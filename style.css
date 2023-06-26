@@ -1,0 +1,26 @@
+
+ul {
+    list-style-type: none;
+  }
+  
+  li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .node {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  .connector {
+    width: 35px;
+    border: 1px solid #000;
+    transform: rotate(90deg);  }
