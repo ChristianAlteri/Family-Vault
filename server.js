@@ -32,7 +32,7 @@ const hbs = exphbs.create({
       db: sequelize
     })
   };
-  
+   
 //   telling express to use the middleware for session with the options provided in the variable 'sess'
   app.use(session(sess));
 
