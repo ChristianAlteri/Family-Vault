@@ -19,10 +19,14 @@ Side.init(
   {
     sequelize,
     timestamps: false,
-    freezeTableName: true,
+    freezeTableName: false,
     underscored: true,
-    modelName: 'user',
+    modelName: 'side',
   }
 );
 
 module.exports = Side;
+
+
+// Side can be mother father spouse or sibling
+// make sure we validate that on the client side. --- Checkbox with four choices

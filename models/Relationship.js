@@ -1,5 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const { sequelize } = require('../config/connection');
+const User = require('./User');
+const Side = require('./Side');
 
 class Relationship extends Model {}
 
@@ -9,27 +11,39 @@ Relationship.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    user: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: User,
+          key: 'id',
+        },
+      },
     related_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: User,
+        key: "id"
+      }
     },  
     generation: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    side: {
+    side_id: {
       type: DataTypes.STRING,
       allowNull: false,
+      references: {
+        model: Side,
+        key: "id"
+      }
     },
   },
   {
     sequelize,
     timestamps: false,
-    freezeTableName: true,
+    freezeTableName: false,
     underscored: true,
     modelName: 'relationship',
   }
