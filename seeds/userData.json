@@ -1,18 +1,67 @@
 [
-    {
-      "name": "John Doe",
-      "email": "johndoe@example.com",
-      "password": "password123"
-    },
-    {
-      "name": "Jane Smith",
-      "email": "janesmith@example.com",
-      "password": "password456"
-    },
-    {
-      "name": "David Johnson",
-      "email": "davidjohnson@example.com",
-      "password": "password789"
-    }
-  ]
+  {
+    "name": "John Simpson",
+    "email": "john.simpson@example.com",
+    "password": "password1",
+    "date_of_birth": "1990-01-01",
+    "sex": 1,
+    "profile_pic": "profile_pic1.jpg"
+  },
+  {
+    "name": "Jane Simpson",
+    "email": "jane.simpson@example.com",
+    "password": "password2",
+    "date_of_birth": "1992-05-10",
+    "sex": 2,
+    "profile_pic": "profile_pic2.jpg"
+  },
+  {
+    "name": "Michael Simpson",
+    "email": "michael.simpson@example.com",
+    "password": "password3",
+    "date_of_birth": "1960-11-15",
+    "sex": 1,
+    "profile_pic": "profile_pic3.jpg"
+  },
+  {
+    "name": "Nicole Simpson",
+    "email": "michael.simpson@example.com",
+    "password": "password3",
+    "date_of_birth": "1960-11-15",
+    "sex": 1,
+    "profile_pic": "profile_pic3.jpg"
+  },
+  {
+    "name": "Emily Simpson",
+    "email": "emily.simpson@example.com",
+    "password": "password4",
+    "date_of_birth": "1955-03-22",
+    "sex": 2,
+    "profile_pic": "profile_pic4.jpg"
+  },
+  {
+    "name": "Daniel Simpson",
+    "email": "daniel.simpson@example.com",
+    "password": "password5",
+    "date_of_birth": "1955-07-10",
+    "sex": 1,
+    "profile_pic": "profile_pic5.jpg"
+  },
+  {
+    "name": "Samantha Simpson",
+    "email": "samantha.simpson@example.com",
+    "password": "password6",
+    "date_of_birth": "2000-02-28",
+    "sex": 2,
+    "profile_pic": "profile_pic6.jpg"
+  },
+  {
+    "name": "Christopher Simpson",
+    "email": "christopher.simpson@example.com",
+    "password": "password7",
+    "date_of_birth": "2022-09-05",
+    "sex": 1,
+    "profile_pic": "profile_pic7.jpg"
+  }
+]
   
