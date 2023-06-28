@@ -10,6 +10,7 @@ Relationship.init(
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      autoIncrement: true
     },
     user_id: {
         type: DataTypes.INTEGER,
@@ -19,7 +20,7 @@ Relationship.init(
           key: 'id',
         },
       },
-    related_id: {
+    who_related_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
