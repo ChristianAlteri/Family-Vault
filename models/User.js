@@ -8,6 +8,7 @@ class User extends Model {
     return bcrypt.compareSync(loginPw, this.password);
   }
 }
+
 User.init(
   {
     id: {
@@ -16,14 +17,21 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    last_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: {
+        args: true,
+        msg: 'Email address already in use!',
+      },
       validate: {
         isEmail: true,
       },
@@ -32,22 +40,38 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [8],
+        len: {
+          args: [8],
+          msg: 'Password must be at least 8 characters long!',
+        },
       },
     },
+    biography: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    // On Client side, create dropdown that requires DD/MM/YYYY
     date_of_birth: {
       type: DataTypes.DATE,
       allowNull: false,
-      
     },
     sex: {
+      // This will be 0 for male 1 for female
       type: DataTypes.INTEGER,
       allowNull: false,
-      
+      validate: {
+        isIn: [[0, 1]],
+      },
     },
     profile_pic: {
+      // This will be a url for now
       type: DataTypes.STRING,
       allowNull: true,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
     },
   },
   {
@@ -57,10 +81,7 @@ User.init(
         return newUserData;
       },
       beforeUpdate: async (updatedUserData) => {
-        updatedUserData.password = await bcrypt.hash(
-          updatedUserData.password,
-          10
-        );
+        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
         return updatedUserData;
       },
     },
