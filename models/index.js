@@ -1,19 +1,39 @@
 const User = require('./User');
 const Side = require('./Side');
-const Relationship = require('./Side');
-
+const Relationship = require('./Relationship');
 
 // Creating the relationships between data
 
-// M/M user to relationship
-User.belongsToMany(re)
+// source  -- snooki forward to mum
+User.belongsToMany(Relationship, {
+  foreignKey: "user_id",
+  onDelete: "NO ACTION",
+  as: 'related'
+});
 
-Side.belongsTo(Relationship) {
-    foreignKey: 'post_id',
-    onDelete: 'CASCADE',
-  };
-// COMPLETE
+// related -- mum back to snooki
+User.belongsToMany(Relationship, {
+  foreignKey: "who_related_id",
+  onDelete: "NO ACTION",
+  as: 'inverse_related'
+});
+
+Relationship.belongsTo(Side, {
+  foreignKey: "side_id",
+  onDelete: "NO ACTION"
+});
+
+Relationship.belongsTo(User, {
+  foreignKey: "user_id",
+  onDelete: "NO ACTION"
+});
+
+Relationship.belongsTo(User, {
+  foreignKey: "who_related_id",
+  onDelete: "NO ACTION"
+});
 
 module.exports = {
-    User, Side, Relationship
+    User, Side, 
+    // Relationship
 }

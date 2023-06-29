@@ -1,6 +1,7 @@
 [
   {
-    "name": "Nicole Polizzi",
+    "first_name": "Nicole",
+    "last_name": "Polizzi",
     "email": "snooki@example.com",
     "password": "snookipassword",
     "biography": "Polizzi is from Marlboro, New York, and is an aspiring veterinary technician. She applied to an ad on Facebook that said 'Calling all guidos and guidettes,' which Polizzi said, 'was definitely about my lifestyle.' Polizzi earned the nickname 'Snooki' in middle school after being the first of her friends to 'make out' with a boy.",
@@ -9,7 +10,8 @@
     "profile_pic": "https://akns-images.eonline.com/eol_images/Entire_Site/2011427/300.ab.snooks.052711.jpg?fit=around%7C1200:1200&output-quality=90&crop=1200:1200;center,top"
   },
   {
-    "name": "Samantha Giancola",
+    "first_name": "Samantha",
+    "last_name": "Giancola",
     "email": "sammi@example.com",
     "password": "sammipassword",
     "biography": "Giancola is from Hazlet, New Jersey and is recently single at the start of the series. She attended William Paterson University and was a midfielder on the women's soccer team. Giancola ultimately strikes up a relationship with fellow castmate Ortiz-Magro in season 1 episode 3.",
@@ -18,17 +20,18 @@
     "profile_pic": "https://static1.srcdn.com/wordpress/wp-content/uploads/2021/05/sammi-sweetheart-jersey-shore-cropped.jpg"
   },
   {
-    "name": "Ronnie Ortiz-Magro",
+    "first_name": "Ronnie",
+    "last_name": "Ortiz-Magro",
     "email": "ronnie@example.com",
     "password": "ronniepassword",
-    
     "biography": "Ortiz-Magro is from The Bronx in New York City. He strikes up a relationship with castmate Giancola.",
     "date_of_birth": "1985-12-04",
     "sex": 0,
     "profile_pic": "https://m.media-amazon.com/images/M/MV5BMTAwODM2Mzk4MzheQTJeQWpwZ15BbWU3MDU4MTMzNzg@._V1_.jpg"
   },
   {
-    "name": "Paul DelVecchio",
+    "first_name": "Paul",
+    "last_name": "DelVecchio",
     "email": "paulyd@example.com",
     "password": "paulydpassword",
     "biography": "DelVecchio is a disc jockey from Johnston, Rhode Island outside of Providence. He strikes up a brief romance with fellow castmate Farley but the relationship does not progress.",
@@ -37,7 +40,8 @@
     "profile_pic": "https://media.radaronline.com/brand-img/aCB86jj1r/0x0/2012/11/paulyd.jpg"
   },
   {
-    "name": "Michael Sorrentino",
+    "first_name": "Michael",
+    "last_name": "Sorrentino",
     "email": "thesituation@example.com",
     "password": "situationpassword",
     "biography": "Sorrentino, an assistant manager of a fitness center in Staten Island, develops an attraction towards Giancola, which does not come into fruition when she becomes interested in fellow castmate Ortiz-Magro. Sorrentino worked as an exotic dancer in 2004.",
@@ -46,7 +50,8 @@
     "profile_pic": "https://api.time.com/wp-content/uploads/2014/10/154695515.jpg"
   },
   {
-    "name": "Jennifer Farley",
+    "first_name": "Jennifer",
+    "last_name": "Farley",
     "email": "jwoww@example.com",
     "password": "jwowwpassword",
     "biography": "Farley is a graphic designer and club promoter from Franklin Square, New York. She enters the shore house with a steady relationship at home but cheats on her boyfriend with castmate DelVecchio and ends her relationship in season 3 episode 4 for different reasons.",
@@ -55,7 +60,8 @@
     "profile_pic": "https://nationaltoday.com/wp-content/uploads/2022/10/68-JWoww-Birthday.jpg"
   },
   {
-    "name": "Vinny Guadagnino",
+    "first_name": "Vinny",
+    "last_name": "Guadagnino",
     "email": "vinny@example.com",
     "password": "vinnypassword",
     "biography": "Guadagnino comes from a traditional Italian American family in Staten Island. A graduate of the State University of New York at New Paltz who had plans to attend law school if acting did not work out. Describing first meeting his castmates, he says, 'I see Pauly and his spiky hair and his whole guido look. Great, they found the most stereotypical kid. Then Snooki seems like a train wreck. But you realize we're all starting this crazy new adventure.'",
