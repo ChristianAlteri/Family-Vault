@@ -2,12 +2,72 @@
 /* 
 Home page */
 
+
 .main-container {
-    background-image: url("./image/tree_bg.png");
+    min-width: auto;
+}
+
+
+.bg-container {
+   
     opacity: 5%;
     width: 1000px;
+    position: absolute;
     background-size: contain;
-    position: relative;
-    left: 40%;
-    top: 200px;
+    background-repeat: no-repeat;
+    left: 50%;
+    top: 50px;
 }
+
+.tree-container {
+    background-image: url("./image/tree_bg.png");
+    background-position: 150% bottom;
+    background-attachment: fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end
+}
+
+
+.intro-container {
+    display: flex;
+    height: 250px;
+    width: 600px;
+}
+
+#intro-box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: solid white;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#intro-box h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    color: #23112E;
+}
+
+
+.app-logo {
+    background-color: #EF5132;
+    display: flex;
+    width: 100px;
+    height: 95px;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-brand {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    color: #23112E;
+    font-size: 36px;
+}
+
