@@ -20,7 +20,7 @@ Home page */
 }
 
 .tree-container {
-    background-image: url("./image/tree_bg.png");
+    background-image: url("./image/treebg.png");
     background-position: 150% bottom;
     background-attachment: fixed;
     background-size: contain;
@@ -35,16 +35,18 @@ Home page */
 .intro-container {
     display: flex;
     height: 250px;
-    width: 600px;
 }
 
 #intro-box {
+    width: 600px;
     display: flex;
-    justify-content: center;
+    position: absolute;
+    left: 0;
+    justify-content: flex-start;
     flex-direction: column;
-    flex-wrap: wrap;
     border: solid white;
     border-radius: 10px;
+    background-color: white;
     padding: 20px;
 }
 
