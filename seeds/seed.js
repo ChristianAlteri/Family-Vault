@@ -30,19 +30,19 @@ async function seedDatabase() {
       sides.push(newSide);
     }
 
-    // // Create relationships in the database
-    // for (const relationshipData of relationshipDataArray) {
-    //   const user = users.find(user => user.id === relationshipData.user_id);
-    //   const relatedUser = users.find(user => user.id === relationshipData.who_related_id);
-    //   const side = sides.find(side => side.id === relationshipData.side);
+    // Create relationships in the database
+    for (const relationshipData of relationshipDataArray) {
+      const user = users.find(user => user.id === relationshipData.user_id);
+      const relatedUser = users.find(user => user.id === relationshipData.who_related_id);
+      const side = sides.find(side => side.id === relationshipData.side);
 
-    //   await Relationship.create({
-    //     user_id: user.id,
-    //     who_related_id: relatedUser.id,
-    //     generation: relationshipData.generation,
-    //     side_id: side.id
-    //   });
-    // }
+      await Relationship.create({
+        user_id: user.id,
+        who_related_id: relatedUser.id,
+        generation: relationshipData.generation,
+        side_id: side.id
+      });
+    }
 
     console.log('Database seeded successfully.');
 

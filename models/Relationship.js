@@ -9,6 +9,7 @@ Relationship.init(
   {
     id: {
       type: DataTypes.INTEGER,
+      primaryKey: true,
       allowNull: false,
       autoIncrement: true
     },
@@ -33,7 +34,7 @@ Relationship.init(
       allowNull: false,
     },
     side_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: Side,
