@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS `family_data_db`;
+DROP DATABASE IF EXISTS `family_vault_db`;
 
-CREATE DATABASE `family_data_db`;
+CREATE DATABASE `family_vault_db`;
