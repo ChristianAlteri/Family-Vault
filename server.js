@@ -1,7 +1,7 @@
 // Import dependencies
 const express = require('express');
 const session = require('express-session');
-const routes = require('./controllers');
+const routes = require('./controllers/index');
 const exphbs = require('express-handlebars');
 
 // Import sequelize and Store which is session saving
