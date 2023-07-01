@@ -1,0 +1,18 @@
+ We have to make sure were getting this data from the client side  
+
+
+{
+    "first_name": "test",
+    "last_name": "lastname",
+    "email": "test38@example.com",
+    "password": "testpassword",
+    "biography": "...............",
+    "date_of_birth": "1985-12-04",
+    "sex": 0,
+    "profile_pic": "https://m.media-amazon.com/images/M/MV5BMTAwODM2Mzk4MzheQTJeQWpwZ15BbWU3MDU4MTMzNzg@._V1_.jpg",
+  	"user_id": 1,
+	"generation": 0,
+	"source_id": 1,
+	"side_id": 5,
+	"side_from_sex": 1
+}
