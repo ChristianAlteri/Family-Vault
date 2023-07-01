@@ -2,6 +2,9 @@
 /* 
 Home page */
 
+body {
+    font-size: 18px;
+}
 
 .main-container {
     min-width: auto;
@@ -25,7 +28,7 @@ Home page */
     background-attachment: fixed;
     background-size: contain;
     background-repeat: no-repeat;
-    min-height: 85vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end
@@ -57,6 +60,8 @@ Home page */
 }
 
 
+/* navigation styling */
+
 .app-logo {
     background-color: #EF5132;
     display: flex;
@@ -71,5 +76,214 @@ Home page */
     font-weight: 700;
     color: #23112E;
     font-size: 36px;
+    padding-left: 20px;
 }
 
+
+.sign-up {
+    background-color: #23112E;
+    color: white;
+    padding: 10px 50px;
+    border-radius: 20px;
+    border: none;
+}
+
+.sign-up:hover {
+    background-color: #EF5132;
+    color: white;
+}
+
+.site-identity {
+    display: flex;
+    align-items: center;
+}
+
+.menu-right {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-right  {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+
+/* form styling */
+
+#form-container {
+    max-width: 800px;
+    padding: 50px;
+    border-radius: 50px;
+    box-shadow: 1px 12px 18px 11px rgba(0, 0, 0, 0.10);
+    font-family: 'Poppins', sans-serif;
+}
+
+#form-container h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    color: #EF5132;
+}
+
+.form-group input {
+    background-color: #F0EAF4;
+    border: none;
+    border-radius: 20px;
+    height: 50px;
+}
+
+.form-group textarea {
+    background-color: #F0EAF4;
+    border: none;
+    border-radius: 20px;
+    height: 100px;
+}
+
+.form-group select {
+    background-color: #F0EAF4;
+    border: none;
+    border-radius: 20px;
+    height: 50px;
+}
+
+
+#photo {
+    background-color: white;
+    border: dashed 1px #23112E;
+}
+
+
+#submitbtn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#formsubmit {
+    width: 300px;
+    background-color: #23112E;
+    color: white;
+    padding: 10px 50px;
+    border-radius: 20px;
+    border: none;
+}
+
+#formsubmit:hover {
+    background-color: #EF5132;
+}
+
+/* add new family member form */
+
+#addform-container {
+    max-width: 600px;
+    padding: 50px;
+    border-radius: 50px;
+    box-shadow: 1px 12px 18px 11px rgba(0, 0, 0, 0.10);
+    font-family: 'Poppins', sans-serif;
+}
+
+#addform-container h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    color: #EF5132;
+}
+
+input #file-upload-button {
+    color: red;
+}
+
+
+
+
+
+/* Avatar Styling */
+
+.avatar-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0px 4px 8px rgb(214, 214, 214);
+    width: 137px !important;
+    height: 129px;
+    top: -60px;
+  }
+  
+  .card-container{
+    margin-top: 100px;
+    box-shadow: 4px 4px 8px rgb(217, 217, 217);
+    border-radius: 10px;
+    width: 137px;
+    height: 117px;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card-container:hover {
+    transform: scale(1.1);
+  }
+  
+  .avatar{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+  }
+  
+  .position-relative{
+    position: relative;
+  }
+  
+  .position-absolute{
+    position: absolute;
+  }
+  
+  
+  .name-container {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    top: 80px;
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    color: #23112E;
+  }
+  
+  .plus-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      width: 40px;
+      color: white;
+      background-color: #23112E;
+      border-radius: 50%;
+      position: absolute;
+      left: 120px;
+      top: 20px;
+      transform: scale(1);
+      transition: transform 0.3s ease-in-out;
+  }
+  
+  .plus-button:hover {
+    background-color: #EF5132;
+    scale: 100px;
+    transform: scale(1.2);
+  }
+
+
+  /* Family Member Modal Styling */
+
+  .modal-container {
+    max-width: 580px;
+    padding: 50px;
+    border-radius: 50px;
+    box-shadow: 1px 12px 18px 11px rgba(0, 0, 0, 0.10);
+    font-family: 'Poppins', sans-serif;
+}
+
+.modal-header {
+    display: flex;
+}
