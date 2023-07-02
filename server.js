@@ -4,7 +4,7 @@ const session = require('express-session');
 
 const routes = require('./controllers/testIndex');
 
-const routes = require('./controllers/index');
+// const routes = require('./controllers/index');
 
 const exphbs = require('express-handlebars');
 
