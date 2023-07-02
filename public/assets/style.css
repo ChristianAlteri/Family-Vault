@@ -198,8 +198,6 @@ input #file-upload-button {
 /* Login form styling */
 
 #login-container {
-    display: flex;
-    flex-direction: column;
     max-width: 400px;
     padding: 50px;
     border-radius: 50px;
@@ -209,10 +207,19 @@ input #file-upload-button {
 
 #login-container h2 {
     font-family: 'Libre Baskerville', serif;
+    font-size: 36px;
     font-weight: 700;
     color: #EF5132;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+#login-container .form-group input {
+    width: 100%;
+    margin-bottom: 40px;
+}
+  
 
 
 
