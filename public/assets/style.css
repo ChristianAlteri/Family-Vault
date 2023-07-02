@@ -195,6 +195,27 @@ input #file-upload-button {
 }
 
 
+/* Login form styling */
+
+#login-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    padding: 50px;
+    border-radius: 50px;
+    box-shadow: 1px 12px 18px 11px rgba(0, 0, 0, 0.10);
+    font-family: 'Poppins', sans-serif;
+}
+
+#login-container h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    color: #EF5132;
+}
+
+
+
+
 
 
 
