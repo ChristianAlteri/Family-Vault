@@ -5,6 +5,7 @@ const { User, Relationship } = require('../models')
 // Relation to user from new user
 const createNode = async (req, res) => {
   try {
+    console.log(req.body);
     newUser = await User.create(req.body);
     await createRelationToLoggedInUser(req, res, newUser);
   } catch (err) {
@@ -14,7 +15,8 @@ const createNode = async (req, res) => {
 
 const createRelationToLoggedInUser = async (req, res, newUser) => {
   try {
-    let generation;
+    let generation
+
     if (req.body.side_id === 1 || req.body.side_id === 2) {
       generation = req.body.generation - 1;
     } else if (req.body.side_id === 3 || req.body.side_id === 4) {
@@ -22,7 +24,7 @@ const createRelationToLoggedInUser = async (req, res, newUser) => {
     } else {
       generation = req.body.generation + 1;
     }
-    console.log(newUser);
+    // console.log(newUser);
 
     // Create the relationship record in the "relationships" table
     relationData = await Relationship.create({
@@ -33,8 +35,8 @@ const createRelationToLoggedInUser = async (req, res, newUser) => {
       side_id: req.body.side_id,
     });
 
-    console.log(relationData);
-    // res.status(200).json(relationData);
+    // console.log(relationData);
+
     await linkNode(req, res, newUser, relationData, generation)
     
   } catch (err) {
@@ -65,8 +67,7 @@ console.log('here');
       source_id: req.body.user_id,
       side_id: linkedSide
     });
-    console.log(linkedRelationData);
-    // res.status(200).json(linkedRelationData, relationData);
+    // console.log(linkedRelationData);
   } catch (error) {
     res.status(400).json(err);
   }
