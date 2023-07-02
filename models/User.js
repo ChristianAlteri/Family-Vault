@@ -27,7 +27,7 @@ User.init(
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       unique: {
         args: true,
         msg: 'Email address already in use!',

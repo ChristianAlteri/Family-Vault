@@ -33,6 +33,14 @@ Relationship.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    source_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: User,
+        key: "id"
+      }
+    },
     side_id: {
       type: DataTypes.INTEGER,
       allowNull: false,

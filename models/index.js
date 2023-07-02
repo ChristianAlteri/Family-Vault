@@ -30,6 +30,14 @@ Relationship.belongsTo(User, {
   Relationship.belongsTo(User, {
     foreign_id: 'who_related_to',
   })
+
+  Relationship.belongsTo(User, {
+    foreign_id: 'source_id',
+  })
+
+  User.hasMany(Relationship, { 
+      foreignKey: 'user_id' 
+  });
   
   module.exports = {
       User, Side, Relationship

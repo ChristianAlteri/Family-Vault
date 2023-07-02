@@ -1,0 +1,98 @@
+
+<form method='POST' action='/test' onsubmit='generatePassword(); generateEmail();'>
+  <div>
+    <label for='first_name'>First Name:</label>
+    <input type='text' id='first_name' name='first_name' required />
+  </div>
+
+  <div>
+    <label for='last_name'>Last Name:</label>
+    <input type='text' id='last_name' name='last_name' required />
+  </div>
+
+  <div>
+    <label for='date_of_birth'>Date of Birth:</label>
+    <input type='date' id='date_of_birth' name='date_of_birth' required />
+  </div>
+
+  <div>
+    <label for='sex'>Sex:</label>
+    <select id='sex' name='sex' required>
+      <option value= 0 >Male</option>
+      <option value= 1 >Female</option>
+    </select>
+  </div>
+
+  <div>
+    <label for='side_id'>Relation Type:</label>
+    <select id='side_id' name='side_id' required>
+      <option value= 1 >Father</option>
+      <option value= 2 >Mother</option>
+      <option value= 3 >Spouse</option>
+      <option value= 4 >Sibling</option>
+      <option value= 5 >Child</option>
+    </select>
+  </div>
+
+  <div>
+    <label for='profile_pic'>Profile Picture (URL):</label>
+    <input type='url' id='profile_pic' name='profile_pic' required />
+  </div>
+
+  <div>
+    <label for='generation'>Generation:</label>
+    <input type='number' id='generation' name='generation' required />
+  </div>
+
+  <input type='hidden' id='password' name='password' />
+  <input type='hidden' id='email' name='email' />
+
+
+
+  <input type='hidden' id='user_id' name='user_id' value= {{this.payload.user_id}} />
+  <input type='hidden' id='who_related_id' name='who_related_id' value= {{this.payload.source_id}} />
+  <input type='hidden' id='source_id' name='source_id' value= {{this.payload.who_related_id}} />
+  <input type='hidden' id='side_from_sex' name='side_from_sex' value= {{this.payload.side_from_sex}} />
+
+
+
+
+  <button type='submit'>Post</button>
+</form>
+
+<script>
+  function generatePassword() {
+    const firstName = document.getElementById('first_name').value;
+    const lastName = document.getElementById('last_name').value;
+    const password = 'password' + firstName + lastName;
+    document.getElementById('password').value = password.toString();
+  }
+  function generateEmail() {
+    const firstName = document.getElementById('first_name').value;
+    const email = firstName + '@email.com';
+    document.getElementById('email').value = email.toString();
+  }
+</script>
+
+
+
+{{!-- 
+  const payload = JSON.parse('{{jsonStringify payload}}');
+  document.getElementById('user_id').value = payload.user_id;
+  document.getElementById('source_id').value = payload.source_id; --}}
+
+{{!-- user_id and source_id need to be retrived from the on click
+  <div>
+    <label for='user_id'>Select User:</label>
+    <select id='user_id' name='user_id' required>
+      <option value='1'>jennifer</option>
+      <!-- Add other user options as needed -->
+    </select>
+  </div>
+  <div>
+    <label for='source_id'>Select Source:</label>
+    <select id='source_id' name='source_id' required>
+      <option value='1'>jennifer</option>
+      <!-- Add other user options as needed -->
+    </select>
+  </div> --}}
