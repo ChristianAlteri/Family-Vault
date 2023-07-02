@@ -20,6 +20,7 @@
     "express-session": "^1.17.3",
     "handlebars-helpers": "^0.10.0",
     "lodash": "^4.17.21",
+    "moment": "^2.29.4",
     "mysql2": "^3.4.2",
     "nodemon": "^2.0.22",
     "sequelize": "^6.32.1"

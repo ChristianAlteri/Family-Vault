@@ -44,6 +44,12 @@
     <input type='number' id='generation' name='generation' required />
   </div>
 
+  <div>
+  <label for="biography">Biography (max 100 words):</label>
+  <textarea id="biography" name="biography" rows="4" cols="50" oninput="checkBiographyLength()" required></textarea>
+  <span id="biographyLengthInfo">0/100 words</span>
+  </div>
+
   <input type='hidden' id='password' name='password' />
   <input type='hidden' id='email' name='email' />
 
