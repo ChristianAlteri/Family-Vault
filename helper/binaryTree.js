@@ -6,7 +6,7 @@ class Node {
     }
 }
 
-
+// maybe use a for loop. 
 // -------------------------------------------------------------This should all happen when creating a new user. 
 const snooki = new Node('snooki')
 const sammi = new Node('sammi')
