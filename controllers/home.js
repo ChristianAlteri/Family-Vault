@@ -123,7 +123,7 @@ router.get('/', async (req, res) => {
       userDataArray.push(userData);
       relatedUserArray.push(relatedUser);
       // console.log('User:', userData);
-      // console.log('Related User:', relatedUser);
+      console.log('Related User:', relatedUser);
     }
 
     //  TODO: before passing in related user run it through a helper function that sorts the data and stores the people in their generation. Something we can build tree from
