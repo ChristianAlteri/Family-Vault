@@ -7,14 +7,6 @@
       "source_id": 1
     },
     {
-      "user_id": 2,
-      "who_related_id": 1,
-      "generation": 1,
-      "side_id": 2,
-      "source_id": 2
-    },
-
-    {
       "user_id": 1,
       "who_related_id": 3,
       "generation": -1,
@@ -30,17 +22,10 @@
     },
 
     {
-      "user_id": 4,
-      "who_related_id": 1,
-      "generation": 2,
-      "side_id": 1,
-      "source_id": 3
-    },
-    {
       "user_id": 1,
       "who_related_id": 5,
       "generation": -2,
-      "side_id": 2,
+      "side_id": 1,
       "source_id": 3
     },
     {
@@ -54,7 +39,7 @@
       "user_id": 1,
       "who_related_id": 7,
       "generation": -2,
-      "side_id": 1,
+      "side_id": 2,
       "source_id": 2
     }
   ]
