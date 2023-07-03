@@ -44,5 +44,3 @@ const bfs = (root) => {
 }
 bfs(snooki)
 
-// run
-// node ./helper/binaryTree.js

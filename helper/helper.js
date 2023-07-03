@@ -47,7 +47,7 @@ const createRelationToLoggedInUser = async (req, res, newUser) => {
 const linkNode = async (req, res, newUser, relationData, generation) => {
   try {
     let linkedSide;
-console.log('here');
+// console.log('here');
     if (req.body.side_from_sex === 0 && req.body.side_id === 5) {
         linkedSide = 2;
     } else if (req.body.side_from_sex === 1 && req.body.side_id === 5) {
@@ -68,7 +68,7 @@ console.log('here');
       side_id: linkedSide
     });
     // console.log(linkedRelationData);
-    res.render()
+    res.render() // send to handlebar
   } catch (error) {
     res.status(400).json(err);
   }
