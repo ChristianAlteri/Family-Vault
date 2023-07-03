@@ -215,10 +215,7 @@ input #file-upload-button {
     justify-content: center;
 }
 
-#login-container .form-group input {
-    width: 100%;
-    margin-bottom: 40px;
-}
+
   
 
 
@@ -228,7 +225,7 @@ input #file-upload-button {
 
 /* Avatar Styling */
 
-.avatar-container{
+.avatar-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -239,7 +236,7 @@ input #file-upload-button {
     top: -60px;
   }
   
-  .card-container{
+  .card-container {
     margin-top: 100px;
     box-shadow: 4px 4px 8px rgb(217, 217, 217);
     border-radius: 10px;
