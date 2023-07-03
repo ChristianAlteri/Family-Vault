@@ -13,18 +13,17 @@ const createNode = async (req, res) => {
   }
 };
 
-const createRelationToLoggedInUser = async (req, res, newUser) => {
+const createRelationToLoggedInUser =  async (req, res, newUser) => {
+  // console.log(newUser);
   try {
     let generation
-
-    if (req.body.side_id === 1 || req.body.side_id === 2) {
-      generation = req.body.generation - 1;
-    } else if (req.body.side_id === 3 || req.body.side_id === 4) {
-      generation = req.body.generation;
+    if (req.body.side_id == 1 || req.body.side_id == 2) {
+      generation = - 1;
+    } else if (req.body.side_id == 3 || req.body.side_id == 4) {
+      generation = 0;
     } else {
-      generation = req.body.generation + 1;
+      generation = 1;
     }
-    // console.log(newUser);
 
     // Create the relationship record in the "relationships" table
     relationData = await Relationship.create({
@@ -63,7 +62,7 @@ const linkNode = async (req, res, newUser, relationData, generation) => {
     linkedRelationData = await Relationship.create({
       user_id: newUser.id,
       who_related_id: req.body.user_id,
-      generation: generation - 2,
+      generation: generation +2,
       source_id: req.body.user_id,
       side_id: linkedSide
     });
