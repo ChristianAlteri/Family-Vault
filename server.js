@@ -1,53 +1,64 @@
 // Import dependencies
 const express = require('express');
 const session = require('express-session');
+const moment = require('moment');
+
+// ---------------------------------------------- Comment out route if testing require('./controllers/index');
 
 const routes = require('./controllers/testIndex');
 
 // const routes = require('./controllers/index');
 
+// ----------------------------------------------
+
 const exphbs = require('express-handlebars');
 
 // Import sequelize and Store which is session saving
-const {sequelize} = require('./config/connection');
-const { User } = require('./models');
+const { sequelize } = require('./config/connection');
+const { User, Relationship, Side } = require('./models');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 // Initialise handlebars instance and give nickname 'hbs' load helpers
 const hbs = exphbs.create({
-  extname: 'hbs'
+  extname: 'hbs',
+  helpers: {
+    age: function (dateOfBirth) {
+      const now = moment();
+      const age = now.diff(moment(dateOfBirth, 'YYYY-MM-DD'), 'years');
+      return age;
+    },
+  },
 });
 
-
 // Initialise express instance and port
- const app = express() 
- const PORT = process.env.Port || 3001;
+const app = express();
+const PORT = process.env.Port || 3001;
 
 //  here we're telling our app(express) to put hbs(handlebars) as the view engine
- app.engine('hbs', hbs.engine);
- app.set('view engine', 'hbs');
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
 
- const sess = {
-    secret: 'Super secret secret',
-    cookie: {},
-    resave: false,
-    saveUninitialized: true,
-    store: new SequelizeStore({
-      db: sequelize
-    })
-  };
-   
+const sess = {
+  secret: 'Super secret secret',
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
+};
+
 //   telling express to use the middleware for session with the options provided in the variable 'sess'
-  app.use(session(sess));
+app.use(session(sess));
+app.use(express.static('public'));
 
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
-  
-  app.use(routes);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-  sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => {
-      console.log(`App listening on the boys port ${PORT}!`);
-    });
+app.use(routes);
+
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => {
+    console.log(`App listening on the boys port ${PORT}!`);
   });
-
+});

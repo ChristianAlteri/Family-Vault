@@ -68,6 +68,7 @@ console.log('here');
       side_id: linkedSide
     });
     // console.log(linkedRelationData);
+    res.render()
   } catch (error) {
     res.status(400).json(err);
   }

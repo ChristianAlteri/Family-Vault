@@ -2,42 +2,50 @@ const User = require('./User');
 const Side = require('./Side');
 const Relationship = require('./Relationship');
 
-// snooki linked mum
 User.belongsToMany(User, {
     through: {
-        model: Relationship,
-        unique: false,
+      model: Relationship,
+      as: 'linked',
     },
-    as: 'linked',
-});
-
-// mum linked by snooki
-User.belongsToMany(User, {
-    through: {
-        model: Relationship,
-        unique: false,
-    },
+    foreignKey: 'user_id',
+    otherKey: 'who_related_id',
     as: 'linked_by',
-});
-
-// snooki-mum relationship to snooki
-Relationship.belongsTo(User, {
-    foreign_id: 'user_id',
-    // TODO: find a way to identify this rel
-    
-  })
+  });
+  
+  // mum linked by snooki
+  User.belongsToMany(User, {
+    through: {
+      model: Relationship,
+      as: 'linked_by',
+    },
+    foreignKey: 'who_related_id',
+    otherKey: 'user_id',
+    as: 'linked',
+  });
+  
+  // snooki-mum relationship to snooki
+  Relationship.belongsTo(User, {
+    foreignKey: 'user_id',
+    as: 'user',
+  });
+  
   // snooki-mum rel to mum
   Relationship.belongsTo(User, {
-    foreign_id: 'who_related_to',
-  })
-
-  Relationship.belongsTo(User, {
-    foreign_id: 'source_id',
-  })
-
-  User.hasMany(Relationship, { 
-      foreignKey: 'user_id' 
+    foreignKey: 'who_related_id',
+    as: 'relatedUser',
   });
+  
+  Relationship.belongsTo(User, {
+    foreignKey: 'source_id',
+  });
+
+
+//   User.hasMany(Relationship, { 
+//       foreignKey: 'user_id' 
+//   });
+//   User.hasMany(Relationship, { 
+//       foreignKey: 'who_related_id' 
+//   });
   
   module.exports = {
       User, Side, Relationship
