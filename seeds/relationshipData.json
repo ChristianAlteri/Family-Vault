@@ -1,6 +1,13 @@
 [
     {
       "user_id": 1,
+      "who_related_id": 1,
+      "generation": 0,
+      "side_id": 2,
+      "source_id": 1
+    },
+    {
+      "user_id": 1,
       "who_related_id": 2,
       "generation": -1,
       "side_id": 2,

@@ -12,7 +12,6 @@ router.post('/test', createNode);
 // ----------------------------------------- Get user data by id
 
 router.get('/api/user/:id', async (req, res) => {
-  // We need to figure out how to make the :id the id number of the person we click on.
   try {
     const userID = parseInt(req.params.id);
 
@@ -31,8 +30,6 @@ router.get('/api/user/:id', async (req, res) => {
       source_id: req.session.userId,
       side_from_sex: clickedUser.sex,
     };
-
-    console.log(payload); // This is the data we get when the plus is clicked on the card
     res.render('home', { payload });
   } catch (err) {
     console.error('Error fetching user:', err);

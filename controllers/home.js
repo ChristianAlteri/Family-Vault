@@ -3,11 +3,9 @@ const session = require('express-session');
 const { Op, sequelize } = require('sequelize');
 const { createNode } = require('../helper/helper');
 const { Relationship, User, Side } = require('../models');
-const _ = require('lodash')
+const _ = require('lodash');
 
-
-
-function getRel(gen, userId ){
+function getRel(gen, userId) {
   // const userId = req.session.userId;
   return Relationship.findAll({
     where: {
@@ -44,97 +42,91 @@ function getRel(gen, userId ){
           'date_of_birth',
           'biography',
           'profile_pic',
-
         ],
       },
     ],
   });
 }
-// ----------------------------------------- Display tree 
+// ----------------------------------------- Display tree
 router.get('/', async (req, res) => {
   try {
-    // Find all relationships where User.id = Relationship.who_related_to
-    // store logged in user, the point of view, into a variable called userId
     // TODO: use group by in the future -- more efficient
     const userId = req.session.userId;
-
-
+    //------------------------------------------------- Get data
+    // GrandParents
     const grandparentsRel = await getRel(-2, userId);
-
-    const grandParentsRelGrouped = _.groupBy(grandparentsRel, (rel) => rel.side_id);
- 
-    const grandParentsMum = grandParentsRelGrouped["2"].map((rel) => rel.relatedUser);
-    console.log('gp mum', grandParentsMum);
-    const grandParentsDad = grandParentsRelGrouped["1"].map((rel) => rel.relatedUser);
-    console.log('gp dad', grandParentsDad);
-
+    const grandParentsRelGrouped = _.groupBy(
+      grandparentsRel,
+      (rel) => rel.side_id
+    );
+    // Parents
     const parentsRel = await getRel(-1, userId);
     const parentsRelGrouped = _.groupBy(parentsRel, (rel) => rel.side_id);
+    // Self
+    const selfRel = await getRel(0, userId);
 
-    const mum = parentsRelGrouped[1].map((rel) => rel.relatedUser);
-    const dad = parentsRelGrouped[2].map((rel) => rel.relatedUser);
-    const parents = [...mum, ...dad]
-    console.log(parents);
-    // mum.push(...parents)
-    // dad.push(...parents)
-    
-    // for (let index = 0; index < 3; index++) {
-    //   parents.push(parentsRelGrouped[index])
-    //   // console.log('parents', parentsRelGrouped[index]);
-    // }
-    // const mum = parentsRelGrouped["2"].map((rel) => rel.relatedUser);
-    // console.log('mum', grandParentsMum);
-    // const dad = parentsRelGrouped["1"].map((rel) => rel.relatedUser);
-    // console.log('dad', grandParentsDad);
+    //------------------------------------------------- initialise array
+    const grandParentsMumArray = [];
+    const grandParentsDadArray = [];
+    const mumArray = [];
+    const dadArray = [];
+    const selfArray = [];
 
+    //------------------------------------------------- Loop and store data
 
-    // const grandParentsDad, grandParentsMum, parents;
+    for (const relationship of grandParentsRelGrouped['2']) {
+      const grandParentsMum = relationship.relatedUser.toJSON();
+      grandParentsMumArray.push(grandParentsMum);
+    }
 
-    // const famTree = [
-    //   [
-    //     [...grandParentsMum],
-    //     [...grandParentsDad],
-    //   ],
-    //   [
-    //     [...parents]
-    //   ],
-    //   [
-    //     [snooki]
-    //   ]
+    for (const relationship of grandParentsRelGrouped['1']) {
+      const grandParentsDad = relationship.relatedUser.toJSON();
+      grandParentsDadArray.push(grandParentsDad);
+    }
+    for (const relationship of parentsRelGrouped[2]) {
+      const parentsMum = relationship.relatedUser.toJSON();
+      mumArray.push(parentsMum);
+    }
 
-    // ]
-
-
-
-
-
-
-
-
-
-    let userDataArray = [];
-    // related user array is everyone who the logged in user is related ro
-    let relatedUserArray = [];
-    // let age = []
-
-    for (const relationship of grandparentsRel) {
-      const userData = relationship.user.toJSON();
-      const relatedUser = relationship.relatedUser.toJSON();
-      userDataArray.push(userData);
-      relatedUserArray.push(relatedUser);
-      // console.log('User:', userData);
-      console.log('Related User:', relatedUser);
+    for (const relationship of parentsRelGrouped[1]) {
+      const parentsDad = relationship.relatedUser.toJSON();
+      dadArray.push(parentsDad);
+    }
+    for (const relationship of selfRel) {
+      const self = relationship.relatedUser.toJSON();
+      selfArray.push(self);
     }
 
     //  TODO: before passing in related user run it through a helper function that sorts the data and stores the people in their generation. Something we can build tree from
+    // const famTree = [
+    //  [
+    //    ...grandParentsDadArray,
+    //  ],
+    //  [
+    //    ...grandParentsMumArray,
+    //  ],
+    // ]
+
+    console.log(
+      'grandParentsDadArray',
+      grandParentsDadArray,
+      'grandParentsMumArray',
+      grandParentsMumArray,
+      'dadArray:',
+      dadArray,
+      'mumArray:',
+      mumArray,
+      'selfArray',
+      selfArray
+    );
     res.render('display_tree', {
-      userData: userDataArray,
-      relatedUser: relatedUserArray,
-      // grandParentsDad, grandParentsMum, parents,
-      //  self
+      // famTree
+      grandParentsDadArray,
+      grandParentsMumArray,
+      mumArray,
+      dadArray,
+      selfArray,
     });
-
-
   } catch (error) {
     console.error('Error fetching user table data:', error);
     res.status(500).json({ error: 'Internal server error' });
@@ -167,8 +159,6 @@ router.post('/login', async (req, res) => {
 
     // Store the user's id in the session
     req.session.userId = user.id;
-  
-
 
     // Save the session to send the session cookie to the client
     req.session.save((err) => {
@@ -177,12 +167,11 @@ router.post('/login', async (req, res) => {
         return res.status(500).json({ message: 'Internal server error' });
       }
     });
-    res.redirect('/')
+    res.redirect('/');
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-
 
 module.exports = router;
