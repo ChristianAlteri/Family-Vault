@@ -5,26 +5,26 @@ const { User, Relationship } = require('../models')
 // Relation to user from new user
 const createNode = async (req, res) => {
   try {
+    clickedUser = req.params.id
     console.log(req.body);
     newUser = await User.create(req.body);
-    await createRelationToLoggedInUser(req, res, newUser);
+    await createRelationToLoggedInUser(req, res, newUser, clickedUser);
   } catch (err) {
     res.status(400).json(err);
   }
 };
 
-const createRelationToLoggedInUser = async (req, res, newUser) => {
+const createRelationToLoggedInUser =  async (req, res, newUser, clickedUser) => {
+  // console.log(newUser);
   try {
     let generation
-
-    if (req.body.side_id === 1 || req.body.side_id === 2) {
-      generation = req.body.generation - 1;
-    } else if (req.body.side_id === 3 || req.body.side_id === 4) {
-      generation = req.body.generation;
+    if (req.body.side_id == 1 || req.body.side_id == 2) {
+      generation = - 1;
+    } else if (req.body.side_id == 3 || req.body.side_id == 4) {
+      generation = 0;
     } else {
-      generation = req.body.generation + 1;
+      generation = 1;
     }
-    // console.log(newUser);
 
     // Create the relationship record in the "relationships" table
     relationData = await Relationship.create({
@@ -37,14 +37,14 @@ const createRelationToLoggedInUser = async (req, res, newUser) => {
 
     // console.log(relationData);
 
-    await linkNode(req, res, newUser, relationData, generation)
+    await linkNode(req, res, newUser, relationData, generation, clickedUser)
     
   } catch (err) {
     res.status(400).json(err);
   }
 };
 
-const linkNode = async (req, res, newUser, relationData, generation) => {
+const linkNode = async (req, res, newUser, relationData, generation, clickedUser) => {
   try {
     let linkedSide;
 // console.log('here');
@@ -63,23 +63,18 @@ const linkNode = async (req, res, newUser, relationData, generation) => {
     linkedRelationData = await Relationship.create({
       user_id: newUser.id,
       who_related_id: req.body.user_id,
-      generation: generation - 2,
-      source_id: req.body.user_id,
+      generation: generation +2,
+      // source_id: clickedUser, // source_id is not correct  get the source id from the form
+      source_id: req.body.source_id,
       side_id: linkedSide
     });
-    // console.log(linkedRelationData);
-    res.render() // send to handlebar
+    res.redirect('/') 
+    
   } catch (error) {
     res.status(400).json(err);
   }
 };
-
-
-
-
-
-
   module.exports = { createNode, createRelationToLoggedInUser, linkNode }
   
 
-// RElations to new user from logged in
+

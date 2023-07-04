@@ -40,11 +40,6 @@
   </div>
 
   <div>
-    <label for='generation'>Generation:</label>
-    <input type='number' id='generation' name='generation' required />
-  </div>
-
-  <div>
   <label for="biography">Biography (max 100 words):</label>
   <textarea id="biography" name="biography" rows="4" cols="50" oninput="checkBiographyLength()" required></textarea>
   <span id="biographyLengthInfo">0/100 words</span>
@@ -52,6 +47,8 @@
 
   <input type='hidden' id='password' name='password' />
   <input type='hidden' id='email' name='email' />
+  <input type='hidden' id='req_params_id' name='req_params_id' value='{{this.payload.req_params_id}}' />
+
 
 
 
@@ -82,23 +79,3 @@
 
 
 
-{{!-- 
-  const payload = JSON.parse('{{jsonStringify payload}}');
-  document.getElementById('user_id').value = payload.user_id;
-  document.getElementById('source_id').value = payload.source_id; --}}
-
-{{!-- user_id and source_id need to be retrived from the on click
-  <div>
-    <label for='user_id'>Select User:</label>
-    <select id='user_id' name='user_id' required>
-      <option value='1'>jennifer</option>
-      <!-- Add other user options as needed -->
-    </select>
-  </div>
-  <div>
-    <label for='source_id'>Select Source:</label>
-    <select id='source_id' name='source_id' required>
-      <option value='1'>jennifer</option>
-      <!-- Add other user options as needed -->
-    </select>
-  </div> --}}
