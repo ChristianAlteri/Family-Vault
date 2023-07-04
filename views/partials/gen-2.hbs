@@ -1,12 +1,8 @@
-
-
-
 <div style='display:flex;flex-direction:row;align-items:center;justify-content:center;'>
 
-  <section style="display:flex;flex-direction:row;align-items:center;justify-content:center;">
-
+  <section  style="display:flex;flex-direction:row;align-items:center;justify-content:center;">
     {{#each grandParentsDadArray}}
-      <div class='card-container position-relative' data-user-id="{{ this.id }}">
+      <div data-user-id="{{ this.id }}" class='card-container position-relative' >
         <div class='avatar-container position-absolute' style='width: 60px;'>
           <!-- Add code to place corresponding family member profile -->
           <img
@@ -42,7 +38,7 @@
   <section style="display:flex;flex-direction:row;align-items:center;justify-content:center;">
 
     {{#each grandParentsMumArray}}
-      <div class='card-container position-relative' data-user-id="{{ this.id }}">
+      <div data-user-id="{{ this.id }}" class='card-container position-relative' >
         <div class='avatar-container position-absolute' style='width: 60px;'>
           <!-- Add code to place corresponding family member profile -->
           <img
@@ -74,13 +70,12 @@
 
 
 <script>
-// turn the whole card into a button
+  // turn the whole card into button
   document.addEventListener("DOMContentLoaded", function () {
-    const userElements = document.querySelectorAll(".card-container");
-    userElements.forEach((element) => {
+    const cardElements = document.querySelectorAll(".card-container");
+    cardElements.forEach((element) => {
       element.addEventListener("click", function (event) {
         event.preventDefault();
-
 
         const userId = element.dataset.userId;
         const form = element.querySelector("form");
@@ -90,3 +85,4 @@
     });
   });
 </script>
+

@@ -1,10 +1,10 @@
 
 <div style="display:flex;flex-direction:row;align-items:center;justify-content:center;">
 
-<section>
+<section id="card-section">
   
   {{#each mumArray}}
-  <div class="card-container position-relative" data-user-id="{{ this.id }}" >
+  <div data-user-id="{{ this.id }}" class="card-container position-relative" data-user-id="{{ this.id }}" >
     <div class="avatar-container position-absolute" style="width: 60px;">
       <!-- Add code to place corresponding family member profile -->
       <img width="50" height="50" class="avatar" src="https://i.dailymail.co.uk/i/pix/2013/03/01/article-2286814-183B611A000005DC-986_306x463.jpg" alt="">
@@ -30,10 +30,10 @@
 </section>
 
 
-<section>
+<section id="card-section">
   
   {{#each dadArray}}
-  <div class="card-container position-relative" data-user-id="{{ this.id }}" >
+  <div data-user-id="{{ this.id }}" class="card-container position-relative" data-user-id="{{ this.id }}" >
     <div class="avatar-container position-absolute" style="width: 60px;">
       <!-- Add code to place corresponding family member profile -->
       <img width="50" height="50" class="avatar" src="https://i.dailymail.co.uk/i/pix/2013/03/01/article-2286814-183B611A000005DC-986_306x463.jpg" alt="">
@@ -55,18 +55,10 @@
 
 
 <script>
-// turn the whole card into a button
+    // turn the whole card into button
   document.addEventListener("DOMContentLoaded", function () {
-    const userElements = document.querySelectorAll(".card-container");
-    userElements.forEach((element) => {
-      element.addEventListener("click", function (event) {
-        event.preventDefault();
-
-<script>
-// turn the whole card into a button
-  document.addEventListener("DOMContentLoaded", function () {
-    const userElements = document.querySelectorAll(".modal-container");
-    userElements.forEach((element) => {
+    const cardElements = document.querySelectorAll(".card-container");
+    cardElements.forEach((element) => {
       element.addEventListener("click", function (event) {
         event.preventDefault();
 
@@ -79,12 +71,5 @@
   });
 </script>
 
-        const userId = element.dataset.userId;
-        const form = element.querySelector("form");
-        form.action = `/api/user/card/${userId}`;
-        form.submit();
-      });
-    });
-  });
-</script>
+
 

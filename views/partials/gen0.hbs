@@ -1,34 +1,28 @@
-
-<section style="display:flex;align-items:center;justify-content:center">
-  
+<section id="card-section" style="display:flex;align-items:center;justify-content:center" >
   {{#each selfArray}}
-  <div class="card-container position-relative" data-user-id="{{ this.id }}">
+  <div data-user-id="{{ this.id }}"  class="card-container position-relative">
     <div class="avatar-container position-absolute" style="width: 60px;">
       <!-- Add code to place corresponding family member profile -->
       <img width="50" height="50" class="avatar" src="https://i.dailymail.co.uk/i/pix/2013/03/01/article-2286814-183B611A000005DC-986_306x463.jpg" alt="">
     </div>
     <div class="plus-button">+</div>
-    <div class="name-container"> {{ this.first_name }} <br> {{ this.last_name }} </div>
-    </div>
+    <div class="name-container">{{ this.first_name }} <br> {{ this.last_name }}</div>
 
-     <form action="/api/user/{{ this.id }}" method="GET">
-      <button type="submit">+</button> 
-      {{!-- Mack style above button --}}
+    <form action="/api/user/{{ this.id }}" method="GET">
+      <button type="submit">+</button>
+      {{!-- Make sure to add relevant styling above the button --}}
     </form>
-
+  </div>
   {{/each}}
-
 </section>
 
-
 <script>
-// turn the whole card into a button
+  // turn the whole card into button
   document.addEventListener("DOMContentLoaded", function () {
-    const userElements = document.querySelectorAll(".card-container");
-    userElements.forEach((element) => {
+    const cardElements = document.querySelectorAll(".card-container");
+    cardElements.forEach((element) => {
       element.addEventListener("click", function (event) {
         event.preventDefault();
-
 
         const userId = element.dataset.userId;
         const form = element.querySelector("form");
