@@ -315,3 +315,20 @@ input #file-upload-button {
 .modal-header {
     display: flex;
 }
+
+
+.blurred-div {
+    background-image: url('your-background-image.jpg'); /* Replace 'your-background-image.jpg' with the actual image path */
+    width: 500px; /* Set the width of your div */
+    height: 300px; /* Set the height of your div */
+    position: relative; /* Ensure proper positioning of the content */
+    color: white; /* Set the text color (optional) */
+    font-size: 24px; /* Set the font size (optional) */
+    padding: 20px; /* Add some padding (optional) */
+
+    /* Fallback for browsers that don't support backdrop-filter */
+    background-color: rgba(0, 0, 0, 0.7); /* Adjust the background color and opacity to your liking */
+
+    /* Use the backdrop-filter property for a blurring effect */
+    backdrop-filter: blur(5px); /* Adjust the blur radius to your liking */
+}

@@ -1,0 +1,27 @@
+
+{{#each userDataArray}}
+  <div class="modal-container" data-user-id="{{ this.id }}">
+    <div class="modal-header">
+      <div style="margin-right: 20px;">
+        {{!-- Make the cloudinary links work --}}
+        {{!-- <img src="{{ this.profile_pic }}">  --}}
+        <img src="../../public/assets/image/ProfilePhoto.png">
+      </div>
+      <div style="font-weight: bold;">
+        <h3>{{ this.first_name }} {{ this.last_name }}</h3>
+        <p> D.O.B: {{ date_of_birth }} </p>
+       <p>Age: {{ age this.date_of_birth }}  </p> 
+        <p></p>
+      </div>
+    </div>
+    <div>
+      <h3>Bio:</h3>
+      <p>{{ this.biography }}</p>
+    </div>
+  </div>
+{{/each}}
+
+
+
+
+

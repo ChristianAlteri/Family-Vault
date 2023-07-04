@@ -1,15 +1,17 @@
 
 <section style="margin-right: 20px; color: rgb(39, 0, 179);">
 {{#each selfArray}}
-  <div class="modal-container">
+  <div class="modal-container" data-user-id="{{ this.id }}">
     <div class="modal-header">
       <div style="margin-right: 20px;">
         {{!-- Make the cloudinary links work --}}
-        {{!-- <img src="{{ this.profile_pic }}"> --}} 
+        {{!-- <img src="{{ this.profile_pic }}">  --}}
         <img src="../../public/assets/image/ProfilePhoto.png">
       </div>
       <div style="font-weight: bold;">
-        <h3>{{ this.first_name }} {{ this.last_name }}</h3>
+        <form action="/api/user/card/{{ this.id }}" method="GET">
+    <h3>{{ this.first_name }} {{ this.last_name }}</h3>
+        </form>
         {{!-- <p>{ Relationship }</p> --}}
         <p> D.O.B: {{ this.date_of_birth }} </p>
        <p>Age: {{ age this.date_of_birth }}  </p> 
@@ -30,5 +32,21 @@
 
 
 
+<script>
+// turn the whole card into a button
+  document.addEventListener("DOMContentLoaded", function () {
+    const userElements = document.querySelectorAll(".modal-container");
+    userElements.forEach((element) => {
+      element.addEventListener("click", function (event) {
+        event.preventDefault();
 
+
+        const userId = element.dataset.userId;
+        const form = element.querySelector("form");
+        form.action = `/api/user/card/${userId}`;
+        form.submit();
+      });
+    });
+  });
+</script>
 
