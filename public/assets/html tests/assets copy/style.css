@@ -312,36 +312,3 @@ input #file-upload-button {
 .modal-header {
     display: flex;
 }
-
-
-/* large connector */
-
-.t-shape-large {
-    width: 550px;
-    height: 175px;
-    position: relative;
-    top: 100px;
-  }
-  
-  
-  .t-shape-large:before,
-  .t-shape-large:after {
-    content: "";
-    position: absolute;
-    background-color: black;
-  }
-  
-  .t-shape-large:before {
-    width: 3px;
-    height: calc(50% - 0.5px);
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
-  }
-  
-  .t-shape-large:after {
-    width: 100%;
-    height: 3px;
-    left: 0;
-    top: 0;
-  }
