@@ -5,7 +5,7 @@ const moment = require('moment');
 
 // ---------------------------------------------- Comment out route if testing require('./controllers/index');
 
-const routes = require('./controllers/testIndex');
+const routes = require('./controllers/index');
 
 // const routes = require('./controllers/index');
 
