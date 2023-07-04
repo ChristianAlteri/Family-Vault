@@ -1,41 +1,30 @@
 
-<section style="margin-right: 20px; color: rgb(39, 0, 179);">
-{{#each selfArray}}
-  <div class="modal-container" data-user-id="{{ this.id }}">
-    <div class="modal-header">
-      <div style="margin-right: 20px;">
-        {{!-- Make the cloudinary links work --}}
-        {{!-- <img src="{{ this.profile_pic }}">  --}}
-        <img src="../../public/assets/image/ProfilePhoto.png">
-      </div>
-      <div style="font-weight: bold;">
-        <form action="/api/user/card/{{ this.id }}" method="GET">
-    <h3>{{ this.first_name }} {{ this.last_name }}</h3>
-        </form>
-        {{!-- <p>{ Relationship }</p> --}}
-        <p> D.O.B: {{ this.date_of_birth }} </p>
-       <p>Age: {{ age this.date_of_birth }}  </p> 
-        <p></p>
-      </div>
+<section style="display:flex;align-items:center;justify-content:center">
+  
+  {{#each selfArray}}
+  <div class="card-container position-relative" data-user-id="{{ this.id }}">
+    <div class="avatar-container position-absolute" style="width: 60px;">
+      <!-- Add code to place corresponding family member profile -->
+      <img width="50" height="50" class="avatar" src="https://i.dailymail.co.uk/i/pix/2013/03/01/article-2286814-183B611A000005DC-986_306x463.jpg" alt="">
     </div>
-    <div>
-      <h3>Bio:</h3>
-      <p>{{ this.biography }}</p>
+    <div class="plus-button">+</div>
+    <div class="name-container"> {{ this.first_name }} <br> {{ this.last_name }} </div>
     </div>
-    <form action="/api/user/{{ this.id }}" method="GET">
+
+     <form action="/api/user/{{ this.id }}" method="GET">
       <button type="submit">+</button> 
       {{!-- Mack style above button --}}
     </form>
-  </div>
-{{/each}}
-</section>
 
+  {{/each}}
+
+</section>
 
 
 <script>
 // turn the whole card into a button
   document.addEventListener("DOMContentLoaded", function () {
-    const userElements = document.querySelectorAll(".modal-container");
+    const userElements = document.querySelectorAll(".card-container");
     userElements.forEach((element) => {
       element.addEventListener("click", function (event) {
         event.preventDefault();
@@ -49,4 +38,3 @@
     });
   });
 </script>
-
