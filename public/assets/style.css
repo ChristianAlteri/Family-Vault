@@ -241,9 +241,11 @@ input #file-upload-button {
     box-shadow: 4px 4px 8px rgb(217, 217, 217);
     border-radius: 10px;
     width: 137px;
-    height: 117px;
+    height: 150px;
     transform: scale(1);
     transition: transform 0.3s ease-in-out;
+    background-color: white;
+    text-align: center;
   }
   
   .card-container:hover {
