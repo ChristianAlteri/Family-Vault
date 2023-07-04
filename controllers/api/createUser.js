@@ -4,8 +4,6 @@ const { Op, sequelize } = require('sequelize');
 const { createNode } = require('../../helper/helper');
 const { Relationship, User, Side } = require('../../models');
 const path = require('path');
-
-const fileupload = require('express-fileupload');
 const multer = require('multer');
 
 const cloudinary = require('cloudinary').v2;
@@ -58,27 +56,22 @@ const upload = multer({ dest: 'uploads/' });
 router.post('/upload', upload.single('file'), async (req, res) => {
   try {
     const { file } = req.file;
-    console.log('this is the req', req.file);
-    const filename = this.toString(req.file.fieldname)
-    // Upload the image to Cloudinary
+    // upload the image to Cloudinary
     const filepath = path.join(__dirname, '..', '..', 'uploads', req.file.filename);
-    console.log(filepath);
     const result = await cloudinary.uploader.upload(filepath);
     console.log('Uploaded image details:', result);
 
-    const imgUrl = result.url;
-
-
+    // const imgUrl = result.url;
 
     // TODO: pass in user id 
     // TODO: update
-    User.update({
-      profile_pic: imgUrl
-    }, {
-      where: {id: req.body.user_id}
-    })
+    // User.update({
+    //   profile_pic: imgUrl
+    // }, {
+    //   where: {id: req.body.user_id}
+    // })
 
-    // Perform error check if necessary
+    // error check
 
     res.status(200).json({ success: true, message: 'Image has been uploaded' });
   } catch (error) {
@@ -86,27 +79,5 @@ router.post('/upload', upload.single('file'), async (req, res) => {
     res.status(500).json({ success: false, message: 'Error uploading image' });
   }
 });
-
-
-// 
-//router.post('/upload', async (req, res) => {
-//  try {
-//    const { file } = req.body;
-//    //const { file } = '../../randall.jpg';
-//
-//    // upload the image to Cloudinary
-//    const result = await cloudinary.uploader.upload(file);
-//    console.log('this tha body', file);
-//
-//   // error check
-//
-//    res.status(200).json({ success: true, message: 'image has been uploaded' });
-//  } catch (error) {
-//    console.error('Error uploading image:', error.message);
-//    res.status(500).json({ success: false, message: 'error uploading image' });
-//  }
-//
-//});
-
 
 module.exports = router;
