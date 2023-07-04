@@ -34,9 +34,12 @@
     </select>
   </div>
 
-  <div>
-    <label for='profile_pic'>Profile Picture (URL):</label>
-    <input type='url' id='profile_pic' name='profile_pic' required />
+ <div>
+    <label for="profile_pic">Profile Picture (URL):</label>
+    <input type="url" id="profile_pic" name="profile_pic" required />
+  </div>
+  <div id="drop_zone" style="border: 2px dashed #ccc; padding: 20px; margin-top: 20px;">
+    <p>Drag and drop an image here</p>
   </div>
 
   <div>
@@ -75,6 +78,41 @@
     const email = firstName + '@email.com';
     document.getElementById('email').value = email.toString();
   }
+
+
+    const dropZone = document.getElementById('drop_zone');
+    const profilePicInput = document.getElementById('profile_pic');
+
+    dropZone.addEventListener('dragover', (event) => {
+      event.preventDefault();
+      dropZone.style.backgroundColor = '#f3f3f3';
+    });
+
+    dropZone.addEventListener('dragleave', (event) => {
+      event.preventDefault();
+      dropZone.style.backgroundColor = '';
+    });
+
+    dropZone.addEventListener('drop', (event) => {
+      event.preventDefault();
+      dropZone.style.backgroundColor = '';
+
+      const file = event.dataTransfer.files[0];
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+          const base64Data = e.target.result.split(',')[1];
+          profilePicInput.value = 'data:image/jpeg;base64,' + base64Data;
+          uploadImage(base64Data);
+        };
+
+        reader.readAsDataURL(file);
+      }
+    });
+
+
+
 </script>
 
 
