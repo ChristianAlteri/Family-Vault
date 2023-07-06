@@ -14,13 +14,14 @@
           />
         </div>
         <div class='plus-button'>+</div>
+        <a href="/api/user/card/{{this.id}}">
         <div class='name-container'>
           {{this.first_name}}
           <br />
           {{this.last_name}}
         </div>
+      </a>
       </div>
-
       <form action='/api/user/{{this.id}}' method='GET'>
         <button type='submit'>+</button>
         {{! Mack style above button }}
@@ -50,11 +51,13 @@
           />
         </div>
         <div class='plus-button'>+</div>
+        <a href="/api/user/card/{{this.id}}">
         <div class='name-container'>
           {{this.first_name}}
           <br />
           {{this.last_name}}
         </div>
+        </a>
       </div>
 
       <form action='/api/user/{{this.id}}' method='GET'>
@@ -69,20 +72,4 @@
 </div>
 
 
-<script>
-  // turn the whole card into button
-  document.addEventListener("DOMContentLoaded", function () {
-    const cardElements = document.querySelectorAll(".card-container");
-    cardElements.forEach((element) => {
-      element.addEventListener("click", function (event) {
-        event.preventDefault();
-
-        const userId = element.dataset.userId;
-        const form = element.querySelector("form");
-        form.action = `/api/user/card/${userId}`;
-        form.submit();
-      });
-    });
-  });
-</script>
 
