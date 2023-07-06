@@ -59,20 +59,23 @@ router.post('/upload', upload.single('file'), async (req, res) => {
     // upload the image to Cloudinary
     const filepath = path.join(__dirname, '..', '..', 'uploads', req.file.filename);
     const result = await cloudinary.uploader.upload(filepath);
+
+    // CLOUDINARY OBJECT HERE              
     console.log('Uploaded image details:', result);
+                                        // ^^^^^^
+    // section needs attention D;
 
-    // const imgUrl = result.url;
+    const secureUrl = result.secure_url;
 
-    // TODO: pass in user id 
-    // TODO: update
-    // User.update({
-    //   profile_pic: imgUrl
-    // }, {
-    //   where: {id: req.body.user_id}
-    // })
+    
+    // Update the profile_pic field for the user in the database
+    //await User.update(
+    //  { profile_pic: secureUrl },
+    //  { where: { id: req.body.user_id } }
+    //);
 
     // error check
-
+    // console.log('User ID:', req.body.id);
     res.status(200).json({ success: true, message: 'Image has been uploaded' });
   } catch (error) {
     console.error('Error uploading image:', error);
