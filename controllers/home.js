@@ -50,8 +50,8 @@ function getRel(gen, userId) {
 // ----------------------------------------- Display tree
 router.get('/', async (req, res) => {
   try {
-    // TODO: use group by in the future -- more efficient
     const userId = req.session.userId;
+    if (userId) { // check if user is logged in
     //------------------------------------------------- Get data
     // GrandParents
     const grandparentsRel = await getRel(-2, userId);
@@ -73,39 +73,56 @@ router.get('/', async (req, res) => {
     const selfArray = [];
 
     //------------------------------------------------- Loop and store data
-
-    for (const relationship of grandParentsRelGrouped['2']) {
-      const grandParentsMum = relationship.relatedUser.toJSON();
-      grandParentsMumArray.push(grandParentsMum);
+    if (
+      grandParentsRelGrouped['2'] === undefined ||
+      grandParentsRelGrouped['2'].length === 0
+    ) {
+    } else {
+      // Continue with the for loop
+      for (const relationship of grandParentsRelGrouped['2']) {
+        const grandParentsMum = relationship.relatedUser.toJSON();
+        grandParentsMumArray.push(grandParentsMum);
+      }
     }
 
-    for (const relationship of grandParentsRelGrouped['1']) {
-      const grandParentsDad = relationship.relatedUser.toJSON();
-      grandParentsDadArray.push(grandParentsDad);
-    }
-    for (const relationship of parentsRelGrouped[2]) {
-      const parentsMum = relationship.relatedUser.toJSON();
-      mumArray.push(parentsMum);
-    }
-
-    for (const relationship of parentsRelGrouped[1]) {
-      const parentsDad = relationship.relatedUser.toJSON();
-      dadArray.push(parentsDad);
-    }
-    for (const relationship of selfRel) {
-      const self = relationship.relatedUser.toJSON();
-      selfArray.push(self);
+    if (
+      grandParentsRelGrouped['1'] === undefined ||
+      grandParentsRelGrouped['1'].length === 0
+    ) {
+    } else {
+      for (const relationship of grandParentsRelGrouped['1']) {
+        const grandParentsDad = relationship.relatedUser.toJSON();
+        grandParentsDadArray.push(grandParentsDad);
+      }
     }
 
-    //  TODO: before passing in related user run it through a helper function that sorts the data and stores the people in their generation. Something we can build tree from
-    // const famTree = [
-    //  [
-    //    ...grandParentsDadArray,
-    //  ],
-    //  [
-    //    ...grandParentsMumArray,
-    //  ],
-    // ]
+    if (
+      parentsRelGrouped[2] === undefined ||
+      parentsRelGrouped[2].length === 0
+    ) {
+    } else {
+      for (const relationship of parentsRelGrouped[2]) {
+        const parentsMum = relationship.relatedUser.toJSON();
+        mumArray.push(parentsMum);
+      }
+    }
+    if (
+      parentsRelGrouped[1] === undefined ||
+      parentsRelGrouped[1].length === 0
+    ) {
+    } else {
+      for (const relationship of parentsRelGrouped[1]) {
+        const parentsDad = relationship.relatedUser.toJSON();
+        dadArray.push(parentsDad);
+      }
+    }
+    if (selfRel === undefined || selfRel.length === 0) {
+    } else {
+      for (const relationship of selfRel) {
+        const self = relationship.relatedUser.toJSON();
+        selfArray.push(self);
+      }
+    }
 
     console.log(
       'grandParentsDadArray',
@@ -120,13 +137,15 @@ router.get('/', async (req, res) => {
       selfArray
     );
     res.render('display_tree', {
-      // famTree
       grandParentsDadArray,
       grandParentsMumArray,
       mumArray,
       dadArray,
       selfArray,
-    });
+    }); 
+    } else {
+      res.redirect('/login'); // For example, render a login page
+    } 
   } catch (error) {
     console.error('Error fetching user table data:', error);
     res.status(500).json({ error: 'Internal server error' });
