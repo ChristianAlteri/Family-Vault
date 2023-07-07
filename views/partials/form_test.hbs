@@ -1,21 +1,29 @@
+<div class="container" id="addform-container">
 
 <form method='POST' action='/test' onsubmit='generatePassword(); generateEmail();'>
-  <div>
+ 
+  <div class="">
+
+  <div class="form-group col-lg">
     <label for='first_name'>First Name:</label>
     <input type='text' id='first_name' name='first_name' required />
   </div>
 
-  <div>
+  <div class="form-group col-lg">
     <label for='last_name'>Last Name:</label>
     <input type='text' id='last_name' name='last_name' required />
   </div>
 
-  <div>
+</div>
+
+<div class="form-row">
+  
+  <div class="form-group col-lg">
     <label for='date_of_birth'>Date of Birth:</label>
     <input type='date' id='date_of_birth' name='date_of_birth' required />
   </div>
 
-  <div>
+  <div class="form-group col-lg">
     <label for='sex'>Sex:</label>
     <select id='sex' name='sex' required>
       <option value= 0 >Male</option>
@@ -23,7 +31,7 @@
     </select>
   </div>
 
-  <div>
+  <div class="form-group col-lg">
     <label for='side_id'>Relation Type:</label>
     <select id='side_id' name='side_id' required>
       <option value= 1 >Father</option>
@@ -34,20 +42,14 @@
     </select>
   </div>
 
- <!-- <div>
-    <label for="profile_pic">Profile Picture (URL):</label>
-    <input type="url" id="profile_pic" name="profile_pic" required />
-  </div>
+</div>
 
-  <div id="drop_zone" style="border: 2px dashed #ccc; padding: 20px; margin-top: 20px;">
-    <p>Drag and drop an image here</p>
-  </div> -->
 
-    <div id="drop-area">
+  <div class="form-group col-lg" id="drop-area">
     <p>Drag and drop an image file here, or click to select.</p>
   </div>
 
-  <div>
+  <div class="form-group col-lg">
   <label for="biography">Biography (max 100 words):</label>
   <textarea id="biography" name="biography" rows="4" cols="50" oninput="checkBiographyLength()" required></textarea>
   <span id="biographyLengthInfo">0/100 words</span>
@@ -69,8 +71,10 @@
 
 
 
-  <button type='submit'>Post</button>
+  <button type='submit' id="post-btn">Post</button>
 </form>
+
+</div>
 
 <script>
  function generatePassword() {

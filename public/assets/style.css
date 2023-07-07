@@ -31,7 +31,8 @@ body {
     min-height: 90vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -41,14 +42,11 @@ body {
 }
 
 #intro-box {
-    width: 600px;
+    width: 400px;
     display: flex;
-    position: absolute;
-    left: 0;
-    justify-content: flex-start;
     flex-direction: column;
     border: solid white;
-    border-radius: 10px;
+    border-radius: 20px 0px 0px 20px;
     background-color: white;
     padding: 20px;
 }
@@ -132,6 +130,17 @@ body {
     border: none;
     border-radius: 20px;
     height: 50px;
+    width: 100%;
+    padding: 10px;
+}
+
+.form-group select {
+    background-color: #F0EAF4;
+    border: none;
+    border-radius: 20px;
+    height: 50px;
+    width: 100%;
+    padding: 5px;
 }
 
 .form-group textarea {
@@ -139,6 +148,7 @@ body {
     border: none;
     border-radius: 20px;
     height: 100px;
+    width: 100%;
 }
 
 .form-group select {
@@ -168,6 +178,7 @@ body {
     padding: 10px 50px;
     border-radius: 20px;
     border: none;
+    margin-top: 20px;
 }
 
 #formsubmit:hover {
@@ -182,6 +193,7 @@ body {
     border-radius: 50px;
     box-shadow: 1px 12px 18px 11px rgba(0, 0, 0, 0.10);
     font-family: 'Poppins', sans-serif;
+    background-color: white;
 }
 
 #addform-container h2 {
@@ -190,9 +202,7 @@ body {
     color: #EF5132;
 }
 
-input #file-upload-button {
-    color: red;
-}
+
 
 
 /* Login form styling */
@@ -200,9 +210,10 @@ input #file-upload-button {
 #login-container {
     max-width: 400px;
     padding: 50px;
-    border-radius: 50px;
+    border-radius: 0px 20px 20px 0px;
     box-shadow: 1px 12px 18px 11px rgba(0, 0, 0, 0.10);
     font-family: 'Poppins', sans-serif;
+    background-color: white;
 }
 
 #login-container h2 {
@@ -234,6 +245,7 @@ input #file-upload-button {
     width: 137px !important;
     height: 129px;
     top: -60px;
+    background-color: white;
   }
   
   .card-container {
@@ -292,6 +304,7 @@ input #file-upload-button {
       top: 20px;
       transform: scale(1);
       transition: transform 0.3s ease-in-out;
+    border: none;
   }
   
   .plus-button:hover {
@@ -340,6 +353,7 @@ input #file-upload-button {
     height: 175px;
     position: relative;
     top: 100px;
+    z-index: -1;
   }
   
   
@@ -371,5 +385,37 @@ input #file-upload-button {
     padding: 20px;
     text-align: center;
     cursor: pointer;
+    margin-top: 20px;
   }
   
+
+  #post-btn {
+    background-color: #23112E;
+    color: white;
+    padding: 10px 50px;
+    border-radius: 20px;
+    border: none;
+    width: 100%;
+}
+
+#post-btn:hover {
+    background-color: #EF5132;
+    color: white;
+}
+
+
+
+/* transition fx */
+
+
+.transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 9999;
+    opacity: 0;
+  }
+

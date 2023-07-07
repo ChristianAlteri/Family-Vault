@@ -13,7 +13,9 @@
             alt=''
           />
         </div>
-        <div class='plus-button'>+</div>
+        <form action="/api/user/{{ this.id }}" method="GET">
+        <button type="submit" class="plus-button">+</button>
+      </form>
         <a href="/api/user/card/{{this.id}}">
         <div class='name-container'>
           {{this.first_name}}
@@ -22,10 +24,6 @@
         </div>
       </a>
       </div>
-      <form action='/api/user/{{this.id}}' method='GET'>
-        <button type='submit'>+</button>
-        {{! Mack style above button }}
-      </form>
 
       
 
@@ -50,7 +48,9 @@
             alt=''
           />
         </div>
-        <div class='plus-button'>+</div>
+          <form action="/api/user/{{ this.id }}" method="GET">
+        <button type="submit" class="plus-button">+</button>
+       </form>
         <a href="/api/user/card/{{this.id}}">
         <div class='name-container'>
           {{this.first_name}}
@@ -60,10 +60,7 @@
         </a>
       </div>
 
-      <form action='/api/user/{{this.id}}' method='GET'>
-        <button type='submit'>+</button>
-        {{! Mack style above button }}
-      </form>
+  
 
     {{/each}}
 
