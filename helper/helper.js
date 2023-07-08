@@ -1,17 +1,20 @@
 
 const { and } = require('sequelize');
 const { User, Relationship } = require('../models')
+const { response } = require('express');
+const { Configuration, OpenAIApi } = require('openai');
 
 // Relation to user from new user
 const createNode = async (req, res) => {
   try {
-
+    dateOfBirth = req.body.date_of_birth
     clickedUser = req.body.user_id
-    console.log(req.body);
-    newUser = await User.create(req.body);
+    const context = await getContext(dateOfBirth, res);
+    const newUser = await User.create({ ...req.body, context });
     await createRelationToLoggedInUser(req, res, newUser, clickedUser);
   } catch (err) {
     res.status(400).json(err);
+    console.log(err);
   }
 };
 
@@ -71,8 +74,44 @@ const createRelationToLoggedInUser =  async (req, res, newUser, clickedUser) => 
   }
 };
 
+async function getContext(dateOfBirth) {
+  const configuration = new Configuration({
+    apiKey: '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',
+  });
+  const openai = new OpenAIApi(configuration);
+  if (!configuration.apiKey) {
+    throw new Error('OpenAI API key not configured, please follow instructions in README.md');
+  }
 
-  module.exports = { createNode, createRelationToLoggedInUser }
+  try {
+    const prompt = await generatePrompt(dateOfBirth);
+    const completion = await openai.createCompletion({
+      model: 'text-davinci-003',
+      prompt,
+      temperature: 1.0,
+      max_tokens: 3000,
+    });
+    return completion.data.choices[0].text;
+  } catch (error) {
+    if (error.response) {
+      console.error(error.response.status, error.response.data);
+      throw error.response.data;
+    } else {
+      console.error(`Error with OpenAI API request: ${error.message}`);
+      throw new Error('An error occurred during your request.');
+    }
+  }
+}
+
+
+
+  
+async function generatePrompt(dateOfBirth) {
+  return `Can you give me an overview of this date, ${dateOfBirth}. Please include information about significant events, cultural shifts, and social changes that characterized the decade. Keep it to four sentences`;
+}
+
+
+module.exports = { createNode, createRelationToLoggedInUser, getContext }
   
 
 
