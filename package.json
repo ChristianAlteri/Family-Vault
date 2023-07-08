@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node seeds/seed.js",
     "start": "node server.js",
-    "watch": "nodemon server.js"
+    "watch": "nodemon server.js",
+    "dev": "next dev",
+    "build": "next build",
+    "startNext": "next start"
   },
   "author": "",
   "license": "ISC",
@@ -22,7 +25,13 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "mysql2": "^3.4.2",
+    "next": "^13.4.9",
+    "node-fetch": "^3.3.1",
     "nodemon": "^2.0.22",
+    "openai": "^3.3.0",
     "sequelize": "^6.32.1"
+  },
+  "engines": {
+    "node": ">=14.6.0"
   }
 }

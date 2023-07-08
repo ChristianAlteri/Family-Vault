@@ -50,6 +50,10 @@ User.init(
       type: DataTypes.TEXT,
       allowNull: true,
     },
+    context: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
     // On Client side, create dropdown that requires DD/MM/YYYY
     date_of_birth: {
       type: DataTypes.DATE,
