@@ -1,8 +1,16 @@
-<div style='display:flex;flex-direction:row;align-items:center;justify-content:center;'>
+<div
+  style='display:flex;flex-direction:row;align-items:center;justify-content:center;'
+>
 
-  <section  style="display:flex;flex-direction:row;align-items:center;justify-content:center;">
+  <section
+    style='display:flex;flex-direction:row;align-items:center;justify-content:center;padding-right:120px;'
+  >
+
     {{#each grandParentsDadArray}}
-      <div data-user-id="{{ this.id }}" class='card-container position-relative' >
+      <div
+        data-user-id='{{this.id}}'
+        class='card-container position-relative mx-5'
+      >
         <div class='avatar-container position-absolute' style='width: 60px;'>
           <!-- Add code to place corresponding family member profile -->
           <img
@@ -13,63 +21,57 @@
             alt=''
           />
         </div>
-        <div class='plus-button'>+</div>
-        <a href="/api/user/card/{{this.id}}">
-        <div class='name-container'>
-          {{this.first_name}}
-          <br />
-          {{this.last_name}}
-        </div>
-      </a>
-      </div>
-      <form action='/api/user/{{this.id}}' method='GET'>
-        <button type='submit'>+</button>
-        {{! Mack style above button }}
-      </form>
-
-      
-
-    {{/each}}
-
-  </section>
-
-
-{{!-- connector element --}}
-
-  <section style="display:flex;flex-direction:row;align-items:center;justify-content:center;">
-
-    {{#each grandParentsMumArray}}
-      <div data-user-id="{{ this.id }}" class='card-container position-relative' >
-        <div class='avatar-container position-absolute' style='width: 60px;'>
-          <!-- Add code to place corresponding family member profile -->
-          <img
-            width='50'
-            height='50'
-            class='avatar'
-            src='https://i.dailymail.co.uk/i/pix/2013/03/01/article-2286814-183B611A000005DC-986_306x463.jpg'
-            alt=''
-          />
-        </div>
-        <div class='plus-button'>+</div>
-        <a href="/api/user/card/{{this.id}}">
-        <div class='name-container'>
-          {{this.first_name}}
-          <br />
-          {{this.last_name}}
-        </div>
+        <form action='/api/user/{{this.id}}' method='GET'>
+          <button type='submit' class='plus-button'>+</button>
+        </form>
+        <a href='/api/user/card/{{this.id}}'>
+          <div class='name-container'>
+            {{this.first_name}}
+            <br />
+            {{this.last_name}}
+          </div>
         </a>
       </div>
 
-      <form action='/api/user/{{this.id}}' method='GET'>
-        <button type='submit'>+</button>
-        {{! Mack style above button }}
-      </form>
+    {{/each}}
+    
+  </section>
+
+  {{! connector element }}
+
+  <section
+    style='display:flex;flex-direction:row;align-items:center;justify-content:center;padding-left:120px;'
+  >
+
+    {{#each grandParentsMumArray}}
+      <div
+        data-user-id='{{this.id}}'
+        class='card-container position-relative mx-5'
+      >
+        <div class='avatar-container position-absolute' style='width: 60px;'>
+          <!-- Add code to place corresponding family member profile -->
+          <img
+            width='50'
+            height='50'
+            class='avatar'
+            src='https://i.dailymail.co.uk/i/pix/2013/03/01/article-2286814-183B611A000005DC-986_306x463.jpg'
+            alt=''
+          />
+        </div>
+        <form action='/api/user/{{this.id}}' method='GET'>
+          <button type='submit' class='plus-button'>+</button>
+        </form>
+        <a href='/api/user/card/{{this.id}}'>
+          <div class='name-container'>
+            {{this.first_name}}
+            <br />
+            {{this.last_name}}
+          </div>
+        </a>
+
+      </div>
 
     {{/each}}
-
   </section>
 
 </div>
-
-
-

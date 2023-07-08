@@ -2,6 +2,7 @@
 const express = require('express');
 const session = require('express-session');
 const moment = require('moment');
+const bodyParser = require('body-parser');
 
 // ---------------------------------------------- Comment out route if testing require('./controllers/index');
 
@@ -48,6 +49,10 @@ const sess = {
   }),
 };
 
+// allows larger image files, middleware: body-parser
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
 //   telling express to use the middleware for session with the options provided in the variable 'sess'
 app.use(session(sess));
 app.use(express.static('public'));
@@ -57,8 +62,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(routes);
 
+
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
-    console.log(`App listening on the boys port ${PORT}!`);
+    console.log(`App listening on the boys port http://localhost:${PORT}`);
   });
 });
