@@ -24,11 +24,16 @@
       <div class="container-fluid shadow px-0">
         <div class="site-identity">
           <div class="app-logo"><img src="/assets/image/Layer_1.png"></div>
-          <a class="navbar-brand" style="height:80px" href="#">Family Vault</a>
+          <a class="navbar-brand" style="height:80px" href="/#">Family Vault</a>
         </div>
         <div class="menu-right">
-          <button class="sign-up" href="#">Sign Up</button>
+          {{#if logged_in}}
+          <button class="sign-up" href="/login">Logout</button>
           <img src="/assets/image/frame11.png">
+          {{else}}
+          <button class="sign-up" href="/login">Logout</button>
+          {{/if}}
+          <!-- Use Users profile photo -->
         </div>
       </div>
     </nav>
