@@ -34,12 +34,17 @@
     </select>
   </div>
 
- <div>
+ <!-- <div>
     <label for="profile_pic">Profile Picture (URL):</label>
     <input type="url" id="profile_pic" name="profile_pic" required />
   </div>
+
   <div id="drop_zone" style="border: 2px dashed #ccc; padding: 20px; margin-top: 20px;">
     <p>Drag and drop an image here</p>
+  </div> -->
+
+    <div id="drop-area">
+    <p>Drag and drop an image file here, or click to select.</p>
   </div>
 
   <div>
@@ -68,51 +73,131 @@
 </form>
 
 <script>
-  function generatePassword() {
-    const firstName = document.getElementById('first_name').value;
-    const lastName = document.getElementById('last_name').value;
-    const password = 'password' + firstName + lastName;
-    document.getElementById('password').value = password.toString();
-  }
-  function generateEmail() {
-    const firstName = document.getElementById('first_name').value;
-    const email = firstName + '@email.com';
-    document.getElementById('email').value = email.toString();
-  }
+ function generatePassword() {
+   const firstName = document.getElementById('first_name').value;
+   const lastName = document.getElementById('last_name').value;
+   const password = 'password' + firstName + lastName;
+   document.getElementById('password').value = password.toString();
+ }
+ function generateEmail() {
+   const firstName = document.getElementById('first_name').value;
+   const email = firstName + '@email.com';
+   document.getElementById('email').value = email.toString();
+ }
 
 
-    const dropZone = document.getElementById('drop_zone');
-    const profilePicInput = document.getElementById('profile_pic');
+//    const dropZone = document.getElementById('drop_zone');
+//    const profilePicInput = document.getElementById('profile_pic');
+//
+//    dropZone.addEventListener('dragover', (event) => {
+//      event.preventDefault();
+//      dropZone.style.backgroundColor = '#f3f3f3';
+//    });
+//
+//    dropZone.addEventListener('dragleave', (event) => {
+//      event.preventDefault();
+//      dropZone.style.backgroundColor = '';
+//    });
+//
+//    dropZone.addEventListener('drop', (event) => {
+//      event.preventDefault();
+//      dropZone.style.backgroundColor = '';
+//
+//      const file = event.dataTransfer.files[0];
+//      if (file) {
+//        const reader = new FileReader();
+//
+//        reader.onload = (e) => {
+//          const base64Data = e.target.result.split(',')[1];
+//          profilePicInput.value = 'data:image/jpeg;base64,' + base64Data;
+//          uploadImage(base64Data);
+//        };
+//
+//        reader.readAsDataURL(file);
+//      }
+//    });
 
-    dropZone.addEventListener('dragover', (event) => {
-      event.preventDefault();
-      dropZone.style.backgroundColor = '#f3f3f3';
+const dropArea = document.getElementById('drop-area');
+
+// Prevent default behavior (open as link for some elements)
+dropArea.addEventListener('dragover', (e) => {
+  e.preventDefault();
+});
+
+dropArea.addEventListener('drop', (e) => {
+  e.preventDefault();
+  const files = e.dataTransfer.files;
+  handleFiles(files);
+});
+
+dropArea.addEventListener('click', () => {
+  // Trigger the file input dialog when the user clicks the drop area
+  fileInput.click();
+});
+
+// Create a file input element (hidden) and trigger it when the user clicks on the drop area
+const fileInput = document.createElement('input');
+fileInput.type = 'file';
+fileInput.accept = 'image/*'; // Accept only image files
+fileInput.style.display = 'none';
+
+fileInput.addEventListener('change', (e) => {
+  const files = e.target.files;
+  handleFiles(files);
+});
+
+function handleFiles(files) {
+  const file = files[0];
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    const imageUrl = event.target.result;
+    // Send the image file to your back-end API
+    uploadImage(file, imageUrl);
+  };
+  reader.readAsDataURL(file);
+}
+
+function uploadImage(file, imageUrl) {
+  // Create a FormData object to send the file to the server
+  const formData = new FormData();
+  formData.append('image', file);
+
+  // Make a POST request to your API endpoint for image upload
+  fetch('/api/upload', {
+    method: 'POST',
+    body: formData
+  })
+    .then(response => response.json())
+    .then(data => {
+      // Handle the response from the server, if needed
+      console.log(data);
+    })
+    .catch(error => {
+      // Handle any errors that occurred during the request
+      console.error(error);
     });
+}
 
-    dropZone.addEventListener('dragleave', (event) => {
-      event.preventDefault();
-      dropZone.style.backgroundColor = '';
-    });
+// utilise the /upload route
+function uploadImage(imageData) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/upload', true);
 
-    dropZone.addEventListener('drop', (event) => {
-      event.preventDefault();
-      dropZone.style.backgroundColor = '';
-
-      const file = event.dataTransfer.files[0];
-      if (file) {
-        const reader = new FileReader();
-
-        reader.onload = (e) => {
-          const base64Data = e.target.result.split(',')[1];
-          profilePicInput.value = 'data:image/jpeg;base64,' + base64Data;
-          uploadImage(base64Data);
-        };
-
-        reader.readAsDataURL(file);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          console.log('Image uploaded successfully!');
+        } else {
+          console.error('Image upload failed!');
+        }
       }
-    });
+    };
 
+    const formData = new FormData();
+    formData.append('file', imageData);
 
+    xhr.send(formData);
+  }
 
 </script>
 
