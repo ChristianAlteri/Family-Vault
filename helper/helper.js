@@ -3,6 +3,7 @@ const { and } = require('sequelize');
 const { User, Relationship } = require('../models')
 const { response } = require('express');
 const { Configuration, OpenAIApi } = require('openai');
+require('dotenv').config();
 
 // Relation to user from new user
 const createNode = async (req, res) => {
@@ -76,7 +77,7 @@ const createRelationToLoggedInUser =  async (req, res, newUser, clickedUser) => 
 
 async function getContext(dateOfBirth) {
   const configuration = new Configuration({
-    apiKey: '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',
+    apiKey: process.env.OPEN_AI_KEY,
   });
   const openai = new OpenAIApi(configuration);
   if (!configuration.apiKey) {
