@@ -1,25 +1,28 @@
 const router = require('express').Router();
 const session = require('express-session');
 const { Op, sequelize } = require('sequelize');
-const { createNode } = require('../../helper/helper');
+const { getContext, createRelationToLoggedInUser } = require('../../helper/helper');
 const { Relationship, User, Side } = require('../../models');
 const path = require('path');
 const multer = require('multer');
 
-const cloudinary = require('cloudinary').v2;
 
-cloudinary.config({
-  cloud_name: 'dwzlmgxqp',
-  api_key: '395955317297778',
-  api_secret: 'x5omiP88Cvip1tWRlYvj4MJXRE4'
+
+// Create user
+router.post('/test', async (req, res) => {
+  try {
+    const dateOfBirth = req.body.date_of_birth;
+    const clickedUser = req.body.user_id;
+    const context = await getContext(dateOfBirth, res);
+    const newUser = await User.create({ ...req.body, context });
+    await createRelationToLoggedInUser(req, res, newUser, clickedUser);
+  } catch (err) {
+    res.status(400).json(err);
+    console.log(err);
+  }
 });
 
-// ----------------------------------------- Create user
-
-// post route using the createNode function
-router.post('/test', createNode);
-
-// ----------------------------------------- Get user data by id
+// Get user data by id
 
 router.get('/api/user/:id', async (req, res) => {
   try {
@@ -49,6 +52,13 @@ router.get('/api/user/:id', async (req, res) => {
 
 // ----------------------------------------- Upload image
 
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+  cloud_name: 'dwzlmgxqp',
+  api_key: '395955317297778',
+  api_secret: 'x5omiP88Cvip1tWRlYvj4MJXRE4'
+});
 
 // create a multer instance and specify the destination and filename for uploaded files
 const upload = multer({ dest: 'uploads/' });
