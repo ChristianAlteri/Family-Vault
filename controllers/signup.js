@@ -13,23 +13,26 @@ router.get('/signup', (req, res) => {
 router.post('/signup', async (req, res) => {
   try {
     const userData = await User.create(req.body);
+    console.log(userData);
     const payload = {
-      who_related_id: 1,
+      who_related_id: userData.dataValues.id,
       generation: 0,
-      source_id: 1,
+      source_id: userData.dataValues.id,
       side_id: 2,
+      user_id: userData.dataValues.id
     };
     const relData = await Relationship.create(payload, req.body);
 
     req.session.save(() => {
-      req.session.user_id = userData.id;
+      req.session.user_id = userData.dataValues.id;
       req.session.logged_in = true;
     });
-    res.redirect('/dashboard');
+    res.redirect('/')
   } catch (err) {
     res.render('signup', {
       error: 'Something went wrong',
     });
+    console.log(err);
   }
 });
 
