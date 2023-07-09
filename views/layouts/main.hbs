@@ -1,73 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {{!--
-  <link rel="stylesheet" href="public/assets/style.css"> --}}
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/assets/style.css">
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    {{!
+  <link rel="stylesheet" href="public/assets/style.css"> }}
+    <!-- Bootstrap CSS -->
+    <link
+      rel='stylesheet'
+      type='text/css'
+      href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css'
+    />
+    <link rel='stylesheet' type='text/css' href='/assets/style.css' />
 
-  <title>Document</title>
-   
-</head>
+    <title>Document</title>
 
-<body>
+  </head>
 
+  <body>
 
-  <div class="container-fuild main-container">
+    <div class='container-fuild main-container'>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-light p-0">
-      <div class="container-fluid shadow px-0">
-        <div class="site-identity">
-          <div class="app-logo"><img src="/assets/image/Layer_1.png"></div>
-          <a class="navbar-brand" style="height:80px" href="/#">Family Vault</a>
+      <!-- Navigation Bar -->
+      <nav class='navbar navbar-light p-0'>
+        <div class='container-fluid shadow px-0'>
+          <div class='site-identity'>
+            <div class='app-logo'><img src='/assets/image/Layer_1.png' /></div>
+            <a class='navbar-brand' href='/#'>Family Vault</a>
+          </div>
+          <div class='menu-right'>
+            {{#if logged_in}}
+              <button class='sign-up' href='/login'>Logout</button>
+              <img src='/assets/image/frame11.png' />
+            {{else}}
+              <button class='sign-up' href='/login'>Logout</button>
+            {{/if}}
+            <!-- Use Users profile photo -->
+          </div>
         </div>
-        <div class="menu-right">
-          {{#if logged_in}}
-          <button class="sign-up" href="/login">Logout</button>
-          <img src="/assets/image/frame11.png">
-          {{else}}
-          <button class="sign-up" href="/login">Logout</button>
-          {{/if}}
-          <!-- Use Users profile photo -->
-        </div>
+      </nav>
+
+      <!-- Main Container -->
+
+      <div class='tree-container'>
+
+        {{{body}}}
+
       </div>
-    </nav>
-
-
-    <!-- Main Container -->
-
-
-
-    <div class="tree-container">
-
-
-      {{{ body }}}
-
-
     </div>
-  </div>
 
+    <div class='container-fluid shadow footer'>
 
-
-    <div class="container-fluid shadow">
-
-      <p>View on GitHub</p>
+      <a
+        href='https://github.com/ChristianAlteri/Family-Vault'
+        target='_blank'
+      >View On GitHub</a>
 
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+    <script
+      src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'
+    ></script>
 
-
-    
-
-
-</body>
+  </body>
 
 </html>
