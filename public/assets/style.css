@@ -415,6 +415,14 @@ body {
 
 /* T shape style small */
 
+.t-shape {
+  width: 470px;
+  height: 50px;
+  position: relative;
+  top: -70px;
+  z-index: -1;
+}
+
 .t-shape:before,
 .t-shape:after {
   content: "";
@@ -424,17 +432,64 @@ body {
 
 .t-shape:before {
   width: 3px;
-  height: calc(50% - 0.5px);
+  height: 200px;
   left: 50%;
   top: 0;
   transform: translateX(-50%);
 }
 
 .t-shape:after {
-  width: 100%;
+  width: 50%;
   height: 3px;
   left: 0;
   top: 0;
+  transform: translateX(20%);
+}
+
+
+/* Hardcoded connector shape for gen 2 right side */
+
+.t-shape-right {
+  width: 400px;
+  height: 50px;
+  position: relative;
+  top: -70px;
+  z-index: -1;
+}
+
+.t-shape-right:before,
+.t-shape-right:after {
+  content: "";
+  position: absolute;
+  background-color: black;
+}
+
+.t-shape-right:before {
+  width: 3px;
+  height: 200px;
+  left: 87%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.t-shape-right:after {
+  width: 50%;
+  height: 3px;
+  left: 50%;
+  top: 0;
+  transform: translateX(20%);
+}
+
+
+.intersection-right {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: black;
+  border-radius: 50%;
+  left: 87%;
+  top: calc(50% -2px);
+  transform: translate(-50%, -50%);
 }
 
 .intersection {
@@ -449,23 +504,7 @@ body {
 }
 
 
-.connector {
-    width: 100%;
-    border: 1px solid black;
-    height: 1px;
-  }
-
-  .connector>.dot {
-    border-radius: 50%;
-    width: 10px;
-    background-color: red;
-    height: 10px;
-    margin-top: -5px;
-  }
-
-  .connector>.vertical {
-    border: 1px solid black;
-    position: absolute;
-    height: 80px;
-    z-index: -1;
-  }
+.footer {
+  margin: 0;
+  height: 50px;
+}
