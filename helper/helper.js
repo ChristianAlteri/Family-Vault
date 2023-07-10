@@ -3,20 +3,9 @@ const { and } = require('sequelize');
 const { User, Relationship } = require('../models')
 const { response } = require('express');
 const { Configuration, OpenAIApi } = require('openai');
+require('dotenv').config();
 
-// Relation to user from new user
-const createNode = async (req, res) => {
-  try {
-    dateOfBirth = req.body.date_of_birth
-    clickedUser = req.body.user_id
-    const context = await getContext(dateOfBirth, res);
-    const newUser = await User.create({ ...req.body, context });
-    await createRelationToLoggedInUser(req, res, newUser, clickedUser);
-  } catch (err) {
-    res.status(400).json(err);
-    console.log(err);
-  }
-};
+// Helper functions for creating users
 
 const getCurrentGen = async (loggedInUser, clickedUser ) => {
   const data = await Relationship.findOne({
@@ -27,6 +16,7 @@ const getCurrentGen = async (loggedInUser, clickedUser ) => {
   });
   return data.generation;
 }
+
 const createRelationToLoggedInUser =  async (req, res, newUser, clickedUser) => {
   try {
     const loggedInUser = req.session.userId
@@ -74,9 +64,11 @@ const createRelationToLoggedInUser =  async (req, res, newUser, clickedUser) => 
   }
 };
 
+// Create context
+
 async function getContext(dateOfBirth) {
   const configuration = new Configuration({
-    apiKey: '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',
+    apiKey: process.env.OPEN_AI_KEY,
   });
   const openai = new OpenAIApi(configuration);
   if (!configuration.apiKey) {
@@ -103,15 +95,13 @@ async function getContext(dateOfBirth) {
   }
 }
 
-
-
   
 async function generatePrompt(dateOfBirth) {
-  return `Can you give me an overview of this date, ${dateOfBirth}. Please include information about significant events, cultural shifts, and social changes that characterized the decade. Keep it to four sentences`;
+  return `Can you give me an overview of this date, ${dateOfBirth}. Please include information about significant global events, cultural shifts, and social changes that characterised the decade and preceding decades. Keep it to four sentences`;
 }
 
 
-module.exports = { createNode, createRelationToLoggedInUser, getContext }
+module.exports = {createRelationToLoggedInUser, getContext }
   
 
 
