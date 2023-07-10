@@ -33,7 +33,7 @@ const hbs = exphbs.create({
 
 // Initialise express instance and port
 const app = express();
-const PORT = process.env.Port || 3001;
+const PORT = process.env.PORT || 3001;
 
 //  here we're telling our app(express) to put hbs(handlebars) as the view engine
 app.engine('hbs', hbs.engine);
