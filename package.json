@@ -7,10 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node seeds/seed.js",
     "start": "node server.js",
-    "watch": "nodemon server.js",
-    "dev": "next dev",
-    "build": "next build",
-    "startNext": "next start"
+    "watch": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
