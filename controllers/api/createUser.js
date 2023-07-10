@@ -5,6 +5,7 @@ const { getContext, createRelationToLoggedInUser } = require('../../helper/helpe
 const { Relationship, User, Side } = require('../../models');
 const path = require('path');
 const multer = require('multer');
+const { picUpload } = require('../../helper/picUpload');
 
 
 
@@ -14,6 +15,7 @@ router.post('/test', async (req, res) => {
     const dateOfBirth = req.body.date_of_birth;
     const clickedUser = req.body.user_id;
     const context = await getContext(dateOfBirth, res);
+    // call const profilePic = await picUpload(req.body.profile_pic) when working
     const newUser = await User.create({ ...req.body, context });
     await createRelationToLoggedInUser(req, res, newUser, clickedUser);
   } catch (err) {
@@ -50,42 +52,12 @@ router.get('/api/user/:id', async (req, res) => {
   }
 });
 
-// ----------------------------------------- Upload image
 
-const cloudinary = require('cloudinary').v2;
-
-cloudinary.config({
-  cloud_name: 'dwzlmgxqp',
-  api_key: '395955317297778',
-  api_secret: 'x5omiP88Cvip1tWRlYvj4MJXRE4'
-});
-
-// create a multer instance and specify the destination and filename for uploaded files
-const upload = multer({ dest: 'uploads/' });
-
-router.post('/upload', upload.single('file'), async (req, res) => {
+// Upload pic *not working yet
+// use this route to test the upload. Add it to main create user route when working
+router.post('/upload', picUpload, async (req, res) => {
   try {
-    const { file } = req.file;
-    // upload the image to Cloudinary
-    const filepath = path.join(__dirname, '..', '..', 'uploads', req.file.filename);
-    const result = await cloudinary.uploader.upload(filepath);
-
-    // CLOUDINARY OBJECT HERE              
-    console.log('Uploaded image details:', result);
-                                        // ^^^^^^
-    // section needs attention D;
-
-    const secureUrl = result.secure_url;
-
     
-    // Update the profile_pic field for the user in the database
-    //await User.update(
-    //  { profile_pic: secureUrl },
-    //  { where: { id: req.body.user_id } }
-    //);
-
-    // error check
-    // console.log('User ID:', req.body.id);
     res.status(200).json({ success: true, message: 'Image has been uploaded' });
   } catch (error) {
     console.error('Error uploading image:', error);

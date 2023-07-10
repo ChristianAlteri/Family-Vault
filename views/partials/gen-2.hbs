@@ -2,70 +2,81 @@
   style='display:flex;flex-direction:row;align-items:center;justify-content:center;'
 >
 
- <div>
-  <section style='display:flex;flex-direction:row;align-items:center;justify-content:center;padding-right:120px;'>
-    {{#each grandParentsDadArray}}
-    <div data-user-id='{{this.id}}' class='card-container position-relative mx-5'>
-      <div class='avatar-container position-absolute' style='width: 60px;'>
-        <!-- Add code to place corresponding family member profile -->
-        <img width='50' height='50' class='avatar' src='https://i.dailymail.co.uk/i/pix/2013/03/01/article-2286814-183B611A000005DC-986_306x463.jpg' alt='' />
-      </div>
-      <form action='/api/user/{{this.id}}' method='GET'>
-        <button type='submit' class='plus-button'>+</button>
-      </form>
-      <a href='/api/user/card/{{this.id}}'>
-        <div class='name-container'>
-          {{this.first_name}}
-          <br />{{this.last_name}}
+  <div>
+    <section
+      style='display:flex;flex-direction:row;align-items:center;justify-content:center;padding-right:120px;'
+    >
+      {{#each grandParentsDadArray}}
+        <div
+          data-user-id='{{this.id}}'
+          class='card-container position-relative mx-5'
+        >
+          <div class='avatar-container position-absolute' style='width: 60px;'>
+            <!-- Add code to place corresponding family member profile -->
+            <img
+              width='50'
+              height='50'
+              class='avatar'
+              src='https://i.pinimg.com/1200x/1c/51/90/1c5190da53e99bd9599eb44145ce1f47.jpg'
+              alt=''
+            />
+          </div>
+          <form action='/api/user/{{this.id}}' method='GET'>
+            <button type='submit' class='plus-button'>+</button>
+          </form>
+          <a href='/api/user/card/{{this.id}}'>
+            <div class='name-container'>
+              {{this.first_name}}
+              <br />{{this.last_name}}
+            </div>
+          </a>
         </div>
-      </a>
+      {{/each}}
+    </section>
+    <div class='t-shape'>
+      <div class='intersection'></div>
     </div>
-    {{/each}}
-  </section>
-   <div class="t-shape">
-    <div class="intersection"></div>
   </div>
-</div>
 
   {{! connector element }}
-<div>
-  <section
-    style='display:flex;flex-direction:row;align-items:center;justify-content:center;padding-left:120px;'
-  >
+  <div>
+    <section
+      style='display:flex;flex-direction:row;align-items:center;justify-content:center;padding-left:120px;'
+    >
 
-    {{#each grandParentsMumArray}}
-      <div
-        data-user-id='{{this.id}}'
-        class='card-container position-relative mx-5'
-      >
-        <div class='avatar-container position-absolute' style='width: 60px;'>
-          <!-- Add code to place corresponding family member profile -->
-          <img
-            width='50'
-            height='50'
-            class='avatar'
-            src='https://i.dailymail.co.uk/i/pix/2013/03/01/article-2286814-183B611A000005DC-986_306x463.jpg'
-            alt=''
-          />
-        </div>
-        <form action='/api/user/{{this.id}}' method='GET'>
-          <button type='submit' class='plus-button'>+</button>
-        </form>
-        <a href='/api/user/card/{{this.id}}'>
-          <div class='name-container'>
-            {{this.first_name}}
-            <br />
-            {{this.last_name}}
+      {{#each grandParentsMumArray}}
+        <div
+          data-user-id='{{this.id}}'
+          class='card-container position-relative mx-5'
+        >
+          <div class='avatar-container position-absolute' style='width: 60px;'>
+            <!-- Add code to place corresponding family member profile -->
+            <img
+              width='50'
+              height='50'
+              class='avatar'
+              src='https://i.pinimg.com/1200x/1c/51/90/1c5190da53e99bd9599eb44145ce1f47.jpg'
+              alt=''
+            />
           </div>
-        </a>
+          <form action='/api/user/{{this.id}}' method='GET'>
+            <button type='submit' class='plus-button'>+</button>
+          </form>
+          <a href='/api/user/card/{{this.id}}'>
+            <div class='name-container'>
+              {{this.first_name}}
+              <br />
+              {{this.last_name}}
+            </div>
+          </a>
 
-      </div>
+        </div>
 
-    {{/each}}
-  </section>
-  <div class="t-shape-right">
-    <div class="intersection-right"></div>
+      {{/each}}
+    </section>
+    <div class='t-shape-right'>
+      <div class='intersection-right'></div>
+    </div>
   </div>
-</div>
 
 </div>
