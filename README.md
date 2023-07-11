@@ -2,7 +2,8 @@
  # Family Tree Generator
 
 
-https://github.com/ChristianAlteri/Family-Vault/assets/120008055/4b1eb710-3321-4f9e-9a3f-2572f75df618
+
+<img width="1737" alt="Screen Shot 2023-07-11 at 3 34 41 pm" src="https://github.com/ChristianAlteri/Family-Vault/assets/120008055/0d583a43-4b49-4df7-8791-448b3ec55e8f">
 
 
  ## Table of Contents
@@ -20,7 +21,7 @@ View the live application via the following link:
 https://family-vault-2ab24d70e0a3.herokuapp.com/login
 <br>
 *add link*
-
+https://github.com/ChristianAlteri/Family-Vault/assets/120008055/4b1eb710-3321-4f9e-9a3f-2572f75df618
 ### Project Repository:
 https://github.com/ChristianAlteri/Family-Vault
 
